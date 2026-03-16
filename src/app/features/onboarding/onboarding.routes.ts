@@ -1,6 +1,14 @@
 import { Routes } from '@angular/router';
 import { OnboardingShellComponent } from './onboarding-shell.component';
 import { OnboardingPlaceholderComponent } from './onboarding-placeholder.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { LoginComponent } from './login/login.component';
+import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
+import { SocialLoginFacebookComponent } from './social-login-facebook/social-login-facebook.component';
+import { SocialLoginFingureprintComponent } from './social-login-fingureprint/social-login-fingureprint.component';
+import { SocialLoginGoogleComponent } from './social-login-google/social-login-google.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { SplashScreenComponent } from './splash-screen.component';
 
 export const ONBOARDING_ROUTES: Routes = [
   {
@@ -8,13 +16,14 @@ export const ONBOARDING_ROUTES: Routes = [
     component: OnboardingShellComponent,
     children: [
       { path: '', redirectTo: 'splash', pathMatch: 'full' },
-      { path: 'splash', component: OnboardingPlaceholderComponent, data: { title: 'SCREEN_69 · Splash' } },
-      { path: 'hero', component: OnboardingPlaceholderComponent, data: { title: 'SCREEN_219 · Hero Slider' } },
-      { path: 'login', component: OnboardingPlaceholderComponent, data: { title: 'SCREEN_218 · Modern Login' } },
-      { path: 'otp', component: OnboardingPlaceholderComponent, data: { title: 'SCREEN_223 · OTP Verification' } },
-      { path: 'social-loading', component: OnboardingPlaceholderComponent, data: { title: 'SCREEN_216 · Social Loading' } },
-      { path: 'biometric', component: OnboardingPlaceholderComponent, data: { title: 'SCREEN_180 · Biometric Access' } },
-      { path: 'reset-password', component: OnboardingPlaceholderComponent, data: { title: 'SCREEN_212 · Reset Password' } },
+      { path: 'splash', component: SplashScreenComponent },
+      { path: 'hero', component: LandingPageComponent },
+      { path: 'login', component: LoginComponent},
+      { path: 'otp', component: OtpVerificationComponent},
+      { path: 'social-login-google', component: SocialLoginGoogleComponent },
+      { path: 'social-login-facebook', component: SocialLoginFacebookComponent },
+      { path: 'biometric', component: SocialLoginFingureprintComponent},
+      { path: 'reset-password', component: ResetPasswordComponent },
     ],
   },
 ];
