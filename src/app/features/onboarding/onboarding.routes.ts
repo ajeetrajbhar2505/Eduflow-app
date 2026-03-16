@@ -1,53 +1,20 @@
 import { Routes } from '@angular/router';
-import { OnboardingLayoutComponent } from './components/onboarding-layout.component';
+import { OnboardingShellComponent } from './onboarding-shell.component';
+import { OnboardingPlaceholderComponent } from './onboarding-placeholder.component';
 
 export const ONBOARDING_ROUTES: Routes = [
   {
     path: '',
-    component: OnboardingLayoutComponent,
+    component: OnboardingShellComponent,
     children: [
       { path: '', redirectTo: 'splash', pathMatch: 'full' },
-      {
-        path: 'splash',
-        loadComponent: () =>
-          import('../pages/app-loader-screen.component').then((m) => m.AppLoaderScreenComponent),
-      },
-      {
-        path: 'hero',
-        loadComponent: () =>
-          import('../pages/testimonial-slider-landing-page.component').then(
-            (m) => m.TestimonialSliderLandingPageComponent,
-          ),
-      },
-      {
-        path: 'login',
-        loadComponent: () =>
-          import('../pages/modern-login-screen-with-socials.component').then(
-            (m) => m.ModernLoginScreenWithSocialsComponent,
-          ),
-      },
-      {
-        path: 'otp',
-        loadComponent: () =>
-          import('../pages/otp-verification-screen.component').then((m) => m.OtpVerificationScreenComponent),
-      },
-      {
-        path: 'social-loading',
-        loadComponent: () =>
-          import('../pages/social-login-loading-state-1.component').then(
-            (m) => m.SocialLoginLoadingState1Component,
-          ),
-      },
-      {
-        path: 'biometric',
-        loadComponent: () =>
-          import('./components/biometric.component').then((m) => m.BiometricComponent), // no Stitch asset
-      },
-      {
-        path: 'reset-password',
-        loadComponent: () =>
-          import('../pages/reset-password-screen.component').then((m) => m.ResetPasswordScreenComponent),
-      },
+      { path: 'splash', component: OnboardingPlaceholderComponent, data: { title: 'SCREEN_69 · Splash' } },
+      { path: 'hero', component: OnboardingPlaceholderComponent, data: { title: 'SCREEN_219 · Hero Slider' } },
+      { path: 'login', component: OnboardingPlaceholderComponent, data: { title: 'SCREEN_218 · Modern Login' } },
+      { path: 'otp', component: OnboardingPlaceholderComponent, data: { title: 'SCREEN_223 · OTP Verification' } },
+      { path: 'social-loading', component: OnboardingPlaceholderComponent, data: { title: 'SCREEN_216 · Social Loading' } },
+      { path: 'biometric', component: OnboardingPlaceholderComponent, data: { title: 'SCREEN_180 · Biometric Access' } },
+      { path: 'reset-password', component: OnboardingPlaceholderComponent, data: { title: 'SCREEN_212 · Reset Password' } },
     ],
   },
 ];

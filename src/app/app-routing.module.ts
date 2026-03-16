@@ -15,9 +15,9 @@ const routes: Routes = [
   },
   {
     path: 'workspace',
-    loadChildren: () => import('./features/shell/app-shell.routes').then((m) => m.APP_SHELL_ROUTES),
-    canLoad: [AuthGuard],
+    loadChildren: () => import('./features/workspace/workspace.routes').then((m) => m.WORKSPACE_ROUTES),
     canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
   },
   {
     path: '**',
