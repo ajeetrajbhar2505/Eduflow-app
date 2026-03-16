@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { WorkspaceShellComponent } from './workspace-shell.component';
 import { WorkspacePlaceholderComponent } from './workspace-placeholder.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const WORKSPACE_ROUTES: Routes = [
   {
@@ -8,7 +9,7 @@ export const WORKSPACE_ROUTES: Routes = [
     component: WorkspaceShellComponent,
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_227 · Student Dashboard' } },
+      { path: 'dashboard', component: DashboardComponent, data: { title: 'SCREEN_227 · Student Dashboard' } },
       { path: 'catalog', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_226 · Exam Catalog' } },
       { path: 'catalog-empty', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_73 · Empty Catalog' } },
       { path: 'partner', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_116 · Partner Profile' } },
