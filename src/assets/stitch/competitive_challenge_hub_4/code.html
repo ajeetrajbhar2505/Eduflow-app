@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Branded Full Match Questions List</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#427cf0",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body {
+            min-height: 100dvh;
+        }
+        .ios-blur {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #427cf044;
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white min-h-screen flex flex-col">
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 ios-blur border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center p-4">
+<button class="flex size-10 shrink-0 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-800 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-slate-700 dark:text-white leading-none text-xl">arrow_back_ios_new</span>
+</button>
+<h1 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">Match Breakdown</h1>
+</div>
+<div class="px-4 pb-4">
+<div class="flex p-1 bg-slate-200 dark:bg-slate-900/50 rounded-xl border border-slate-300/50 dark:border-slate-800">
+<button class="flex-1 py-1.5 text-xs font-bold rounded-lg bg-white dark:bg-primary shadow-sm text-primary dark:text-white transition-all">All</button>
+<button class="flex-1 py-1.5 text-xs font-bold rounded-lg text-slate-500 dark:text-slate-400">Won by Us</button>
+<button class="flex-1 py-1.5 text-xs font-bold rounded-lg text-slate-500 dark:text-slate-400">Lost by Us</button>
+</div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto custom-scrollbar p-4 space-y-4 pb-24">
+<div class="bg-white dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200 dark:border-slate-800/60 active:bg-slate-50 dark:active:bg-slate-800 transition-colors">
+<div class="flex items-start gap-3">
+<div class="size-8 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center font-bold text-sm text-primary">01</div>
+<div class="flex-1">
+<p class="text-[15px] font-medium leading-snug mb-3">Solve for x: 3(x + 5) = 2x - (x - 8). Provide the final value of x.</p>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<img alt="St. Xavier Logo" class="size-6 rounded-full border border-green-500/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRoNQ3zcZXouXxwtFRnTeefnfqKAlUAhXpif10RN8mLD9sp_-6plbzgGbZtzQEz3ht_2sSPOhs_1t9D-7a5Cd2IQNVw3U1V0iivQXK5u4sLJEF1QZIKFenb0jvQOmuFU-AGL98u5hBLoGFNe67AqyksuKQYrX-pVPz_KwJ1tVyqvQ67jdgJPojULvFPFiZLgUa3a-Jj84A3vUDDaOMJSQgjnMBPirLEattLVipR0zgQfRVqXN2YlJLwsz3w0taJvOo3bZWvG0rh2ig"/>
+<span class="text-[11px] font-bold text-green-500 uppercase tracking-tight">St. Xavier Win</span>
+</div>
+<span class="material-symbols-outlined text-green-500 text-lg">check_circle</span>
+</div>
+<div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-100 dark:border-slate-800">
+<div class="space-y-1">
+<div class="flex justify-between text-[10px] font-bold text-primary uppercase">
+<span>Our Class</span>
+<span>88%</span>
+</div>
+<div class="h-1.5 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 88%"></div>
+</div>
+</div>
+<div class="space-y-1 opacity-60">
+<div class="flex justify-between text-[10px] font-bold text-slate-400 uppercase">
+<span>Opponent</span>
+<span>42%</span>
+</div>
+<div class="h-1.5 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-slate-400 rounded-full" style="width: 42%"></div>
+</div>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300 self-center">chevron_right</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200 dark:border-slate-800/60 active:bg-slate-50 dark:active:bg-slate-800 transition-colors">
+<div class="flex items-start gap-3">
+<div class="size-8 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center font-bold text-sm text-primary">02</div>
+<div class="flex-1">
+<p class="text-[15px] font-medium leading-snug mb-3">Calculate the area of a triangle with sides 7cm, 24cm, and 25cm using Heron's formula.</p>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<img alt="Lincoln High Logo" class="size-6 rounded-full border border-red-500/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDedbEdt-kx31lAIHs3bGzgWAAUEfIFaaZwbWy-dunkCoe6RwOB8P8yaC56hcQNQP9jo8fxLPpqDNqZXD3WnpNkXeXkn_gb6-9uuLwYD9D1-QUxzloQ8hfWP6Y9Vk1gh9d509-mrnlZROdhh4V-PedILJfGIVH13dLRR7awCIBoAzxZGHpalMlLrzC2mcxDLh660tQq4-8cstSinp1KlN1-Q1O_ByJ184gcETs3FIegyK6bbAiwK1UErGHkW8O9lCkEfjim8Rc86CVa"/>
+<span class="text-[11px] font-bold text-red-500 uppercase tracking-tight text-nowrap">Lincoln High Win</span>
+</div>
+<span class="material-symbols-outlined text-red-500 text-lg">cancel</span>
+</div>
+<div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-100 dark:border-slate-800">
+<div class="space-y-1">
+<div class="flex justify-between text-[10px] font-bold text-primary uppercase">
+<span>Our Class</span>
+<span>35%</span>
+</div>
+<div class="h-1.5 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 35%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-[10px] font-bold text-red-500 uppercase">
+<span>Opponent</span>
+<span>91%</span>
+</div>
+<div class="h-1.5 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-red-500 rounded-full" style="width: 91%"></div>
+</div>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300 self-center">chevron_right</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200 dark:border-slate-800/60 active:bg-slate-50 dark:active:bg-slate-800 transition-colors">
+<div class="flex items-start gap-3">
+<div class="size-8 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center font-bold text-sm text-primary">03</div>
+<div class="flex-1">
+<p class="text-[15px] font-medium leading-snug mb-3">Identify the integration technique for ∫x²·ln(x) dx and find the primitive function.</p>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<img alt="St. Xavier Logo" class="size-6 rounded-full border border-green-500/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR7hFu3WSDwU4qfiBthdk7tnId6I93y9AotcNLPDrSl_BQjABb2zOUCJTYTbduiSvoA4wGp7dn9VTL9eh3MCeGXDrIGXqexYZK_WZoRkOT3fHDlCaFIwnn6aJLLwTy5VtyJsgFih4gVx5wKPzOVI9j7-c6Z2finXQXFxxd12DIr4WGNO0VjcgYaB67J-aeHAXUe4eJ147df80oA3tV6NIUCOskI-LT2THOKQdtUrtrRAEqjCn-D6k5TnmFqtBXKgn9UCwqfYHYuiH_"/>
+<span class="text-[11px] font-bold text-green-500 uppercase tracking-tight">St. Xavier Win</span>
+</div>
+<span class="material-symbols-outlined text-green-500 text-lg">check_circle</span>
+</div>
+<div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-100 dark:border-slate-800">
+<div class="space-y-1">
+<div class="flex justify-between text-[10px] font-bold text-primary uppercase">
+<span>Our Class</span>
+<span>64%</span>
+</div>
+<div class="h-1.5 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 64%"></div>
+</div>
+</div>
+<div class="space-y-1 opacity-60">
+<div class="flex justify-between text-[10px] font-bold text-slate-400 uppercase">
+<span>Opponent</span>
+<span>58%</span>
+</div>
+<div class="h-1.5 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-slate-400 rounded-full" style="width: 58%"></div>
+</div>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300 self-center">chevron_right</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800/40 p-4 rounded-2xl border border-slate-200 dark:border-slate-800/60 active:bg-slate-50 dark:active:bg-slate-800 transition-colors">
+<div class="flex items-start gap-3">
+<div class="size-8 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center font-bold text-sm text-primary">04</div>
+<div class="flex-1">
+<p class="text-[15px] font-medium leading-snug mb-3">What is the probability of pulling two aces consecutively from a deck of 52 cards without replacement?</p>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<img alt="St. Xavier Logo" class="size-6 rounded-full border border-green-500/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgQdPGrSa92-Y-FTXiNJD2hPNykWLQ9TETDGh9uerd1eW7R1VgwB75rqunDnI-Xv4KH1Cy1BtXiWdvTE2JQAIgtL5ZEUQWX80yhKKvFiBcJLxNTT0cOUkgAMVEE2XKuTCLhJ2d7f12nYNIcsw9NXon1AgzZxW4crEdWn91OWsXJxeCTxPLFr0U-JpdAvTJhd-vL2mUcKCPOckTx7Smivjgxw9_KHogII_CdxtunV0vrNV-jZLJlHPJHRFFw2xHs_7cKsYzwuy5Efqr"/>
+<span class="text-[11px] font-bold text-green-500 uppercase tracking-tight">St. Xavier Win</span>
+</div>
+<span class="material-symbols-outlined text-green-500 text-lg">check_circle</span>
+</div>
+<div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-100 dark:border-slate-800">
+<div class="space-y-1">
+<div class="flex justify-between text-[10px] font-bold text-primary uppercase">
+<span>Our Class</span>
+<span>72%</span>
+</div>
+<div class="h-1.5 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 72%"></div>
+</div>
+</div>
+<div class="space-y-1 opacity-60">
+<div class="flex justify-between text-[10px] font-bold text-slate-400 uppercase">
+<span>Opponent</span>
+<span>30%</span>
+</div>
+<div class="h-1.5 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-slate-400 rounded-full" style="width: 30%"></div>
+</div>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300 self-center">chevron_right</span>
+</div>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-background-dark/90 ios-blur border-t border-slate-200 dark:border-slate-800 px-6 py-3 flex justify-between items-center z-50">
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">rocket_launch</span>
+<span class="text-[10px] font-bold uppercase">Hub</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="text-[10px] font-bold uppercase">Ranking</span>
+</button>
+<button class="flex flex-col items-center justify-center -mt-8 size-14 rounded-full bg-primary text-white shadow-lg shadow-primary/40 ring-4 ring-white dark:ring-background-dark">
+<span class="material-symbols-outlined text-3xl">smart_toy</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="text-[10px] font-bold uppercase">Learn</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-[10px] font-bold uppercase">Profile</span>
+</button>
+</nav>
+
+</body></html>

@@ -1,0 +1,86 @@
+<!-- Main Container (iOS Phone Ratio) -->
+<div class="relative mx-auto flex h-screen max-w-md flex-col bg-background-light dark:bg-background-dark overflow-hidden border-x border-gray-200 dark:border-gray-800 shadow-2xl">
+<!-- TopAppBar Component -->
+<header class="sticky top-0 z-10 flex items-center bg-white/80 dark:bg-background-dark/80 backdrop-blur-md p-4 pb-2 justify-between border-b border-gray-100 dark:border-gray-800">
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
+<span class="material-symbols-outlined text-[#0d121b] dark:text-white">arrow_back_ios</span>
+</button>
+<div class="relative flex shrink-0 items-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-gray-100" data-alt="Portrait of a friendly AI robot avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCxdUCTVb9ehQpwZndwg8P5y7HQiX41GQsqEDz6QbMNGSVAMOdwvkLBSGlh7VAF7-gitfYtQKAPLhTtbC-ABO-BADSRyp0Cu_-6HNEijDLoUNfwvpz4mIBcA6-B7eHdsYCrYvpURfsYHd0So6x-4tGsKEmZ_Pf65d5-W6ua0yIRgy4QNWfaK77ke9rnJMommk5npY8N1zOnj2T4T5eFl8vRTWSE6uu7Px4R0yQcSPl-8OPz6T5cquNznD_D-Aw6xbBvTHkS9dM6GrTU");'></div>
+<div class="absolute bottom-0 right-0 size-3 rounded-full border-2 border-white dark:border-background-dark bg-green-500"></div>
+</div>
+<div class="flex flex-col">
+<h2 class="text-[#0d121b] dark:text-white text-base font-bold leading-tight tracking-tight">ExamBot</h2>
+<p class="text-[#4c669a] dark:text-primary/70 text-[11px] font-medium uppercase tracking-wider">Online</p>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button class="flex items-center justify-center p-2 text-gray-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Chat Area -->
+<main class="flex-1 overflow-y-auto px-4 py-6 space-y-4">
+<!-- MetaText / Date Divider -->
+<div class="flex justify-center my-4">
+<span class="bg-gray-200/50 dark:bg-gray-800 px-3 py-1 rounded-full text-[#4c669a] dark:text-gray-400 text-[11px] font-medium uppercase">Today</span>
+</div>
+<!-- SingleMessage (AI) -->
+<div class="flex items-start gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-8 h-8 shrink-0 mt-1 border border-gray-100" data-alt="AI robot assistant avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCoxa-iFNsCDGoaYIh893QtfF12iLk_67UHSViP6pNL-Q76b2wG1oPSgOsocKR9TdvDO0zvU5oRlqU5oyDtdA3RLxfYmt_5yJONkto5dRsbrUVga9h2_-fXpUD9HieV6QC-OYA10M2AhXJme3lq-lK0QzCE-TQR3vt-AGUmdMCLpgex6NsszjAFx4GqX0pm2vgrWRz5Xl__wXcLYlxZe5R77whqG7K3lXs5S00wlBcmi-fIME0aW5NW_XTlXZXFZcX_sUqxQ6sV3JGq");'></div>
+<div class="flex flex-1 flex-col gap-1 items-start">
+<div class="text-sm font-normal leading-relaxed flex max-w-[85%] rounded-xl rounded-tl-none px-4 py-3 bg-white dark:bg-gray-800 text-[#0d121b] dark:text-gray-100 shadow-sm border border-gray-100 dark:border-gray-700">
+                        Hello! I'm your AI study assistant. How can I help you prepare for your exams today?
+                    </div>
+<p class="text-gray-400 text-[10px] ml-1">09:41 AM</p>
+</div>
+</div>
+<!-- SingleMessage (User) -->
+<div class="flex items-start gap-3 justify-end">
+<div class="flex flex-1 flex-col gap-1 items-end">
+<div class="text-sm font-normal leading-relaxed flex max-w-[85%] rounded-xl rounded-tr-none px-4 py-3 bg-primary text-white shadow-md">
+                        Can you explain the Pythagorean theorem? I'm struggling with the geometry section of the exam.
+                    </div>
+<p class="text-gray-400 text-[10px] mr-1">09:42 AM</p>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-8 h-8 shrink-0 mt-1 border border-primary/20" data-alt="Student profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBZ2OaBQXLfxZ4E0tmBr5NfJecdM5PJ5lR5-2zRadR_6DVjWZxXuq8ITTDXjVg_-8PRK5beVA1BatGrKy8N749nTdebyO_kmg9awRuZiGSSHLj0tmMURM1b6BPF596OWH9RnNux-z7RkQMQniJG47PRmyiuXkJZqAnAteUu7jia7R_ZC-4hGrlADSFKEpGxPEw6YBVVuItR8RFSPQ5_ksD1ip7p-8dJcBIvrQFdzVEeErJbrmL3Da8ROhpf2ONEpaBn7YpQpTBmnSOV");'></div>
+</div>
+<!-- SingleMessage (AI) -->
+<div class="flex items-start gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-8 h-8 shrink-0 mt-1 border border-gray-100" data-alt="AI robot assistant avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBcluFl9w0gchdU8W-R5shL61bez4e8cMzMMoEp37dr4VvJfyYr4-f2O8aFvfW7JAePRsv3ArHzcoyDaLNmFuPdYaYGRJBuANrKs6MmSXoMlMaVHKaEjR2pvqJn0e7tgDjH7tyVQ-KOXNJejxVpCfgouXi-0hQfSLOhZoQ-SiSuCtd-YeC9McyirR417wo2QZxp9GwTxfhrILHKWEvrzhOUcalWtXfw7xH_HPeYPLtwg3vC3-Ts_ZSsx5b72O6D3rtN62TVbS9t9D2F");'></div>
+<div class="flex flex-1 flex-col gap-1 items-start">
+<div class="text-sm font-normal leading-relaxed flex flex-col gap-3 max-w-[85%] rounded-xl rounded-tl-none px-4 py-3 bg-white dark:bg-gray-800 text-[#0d121b] dark:text-gray-100 shadow-sm border border-gray-100 dark:border-gray-700">
+<p>The Pythagorean theorem is used for right-angled triangles. It states that:</p>
+<p class="bg-background-light dark:bg-background-dark p-2 rounded-lg font-mono text-center text-primary font-bold">a² + b² = c²</p>
+<p>Where <span class="font-bold">c</span> is the hypotenuse (the longest side), and <span class="font-bold">a</span> and <span class="font-bold">b</span> are the other two sides.</p>
+</div>
+<p class="text-gray-400 text-[10px] ml-1">09:43 AM</p>
+</div>
+</div>
+<!-- Typing Indicator -->
+<div class="flex items-center gap-2 pt-2 ml-11">
+<div class="flex gap-1 items-center bg-gray-200/50 dark:bg-gray-800/50 px-3 py-1.5 rounded-full">
+<div class="size-1.5 bg-gray-400 rounded-full animate-pulse"></div>
+<div class="size-1.5 bg-gray-400 rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
+<div class="size-1.5 bg-gray-400 rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
+<span class="text-xs text-gray-500 font-medium ml-1">AI is thinking...</span>
+</div>
+</div>
+</main>
+<!-- Input Bar (Bottom) -->
+<footer class="p-4 bg-white dark:bg-background-dark border-t border-gray-100 dark:border-gray-800">
+<div class="flex items-center gap-2 bg-gray-100 dark:bg-gray-800/50 rounded-xl p-2 pl-4 pr-2">
+<button class="flex items-center justify-center text-gray-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">add_circle</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-sm py-2 text-[#0d121b] dark:text-white placeholder:text-gray-400" placeholder="Ask a study question..." type="text"/>
+<button class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary text-white shadow-lg shadow-primary/30 transition-transform active:scale-95">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+<!-- iOS Home Indicator Spacing -->
+<div class="h-4"></div>
+</footer>
+</div>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Verify Quiz Questions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0ea5e9",
+                        "secondary-blue": "#0ea5e9",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Lexend', sans-serif;
+            min-height: max(884px, 100dvh);
+        }
+        .ios-status-bar {
+            height: 44px;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .custom-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white transition-colors duration-300">
+<div class="relative flex min-h-screen w-full flex-col max-w-[430px] mx-auto overflow-x-hidden border-x border-slate-200 dark:border-slate-800 shadow-2xl bg-background-light dark:bg-background-dark">
+<header class="sticky top-0 z-40 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="ios-status-bar flex items-center justify-between px-8 pt-4">
+<span class="text-xs font-semibold">9:41</span>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-[14px]">signal_cellular_alt</span>
+<span class="material-symbols-outlined text-[14px]">wifi</span>
+<span class="material-symbols-outlined text-[14px]">battery_full</span>
+</div>
+</div>
+<div class="flex items-center p-4 pb-2 justify-between">
+<div class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">Verify Questions</h2>
+</div>
+</header>
+<main class="flex-1 flex flex-col px-4 pt-2 pb-40">
+<div class="relative bg-white dark:bg-[#192233] border border-slate-200 dark:border-[#324467] rounded-2xl p-5 mb-6 shadow-sm">
+<button class="absolute top-4 right-4 text-slate-400 hover:text-secondary-blue transition-colors">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<div class="flex items-start gap-4">
+<div class="flex size-14 items-center justify-center rounded-2xl bg-secondary-blue/10 text-secondary-blue">
+<span class="material-symbols-outlined text-3xl">shapes</span>
+</div>
+<div>
+<h3 class="text-xl font-bold">Geometry Quiz</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Analyzing shapes, area, and graphical representations.</p>
+<div class="flex items-center gap-3 mt-3">
+<span class="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-[10px] font-bold uppercase tracking-wider text-slate-500">10 Questions</span>
+<span class="px-2 py-0.5 rounded-md bg-secondary-blue/10 text-secondary-blue text-[10px] font-bold uppercase tracking-wider">Hard</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h4 class="text-sm font-bold uppercase tracking-widest text-slate-500">Review Questions</h4>
+</div>
+<div class="bg-white dark:bg-[#192233] border border-slate-200 dark:border-[#324467] rounded-2xl p-4 shadow-sm relative">
+<div class="flex flex-col mb-4">
+<div class="flex justify-between items-start">
+<span class="text-xs font-bold text-secondary-blue mb-2 block uppercase tracking-wide">Question 1</span>
+<div class="flex flex-col gap-2 absolute top-4 right-4 z-10">
+<button class="size-8 flex items-center justify-center rounded-lg bg-white/10 dark:bg-slate-800 backdrop-blur-md text-slate-500 hover:text-secondary-blue transition-colors border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="size-8 flex items-center justify-center rounded-lg bg-white/10 dark:bg-slate-800 backdrop-blur-md text-slate-500 hover:text-red-500 transition-colors border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined text-sm">delete</span>
+</button>
+</div>
+</div>
+<div class="w-full h-44 rounded-xl overflow-hidden mb-4 bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+<img alt="Mathematical Diagram" class="w-full h-full object-cover opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSetMjhg_dZRcldJJeP1P8SHSKzafRJtbfpl2T2NxhzkEitMRB5atyr3RcfUaP9q_rOyiYNXPNDZhyKaAMu5B0n0nQ17WWxMECm45KWFdd1aGHP8xbtV1sOQaLUeztSW0bh0KH8kXWOtyPz3V4jMu36E5sLsQW_9Iy2JohKxUpa18pQxKXKwHnHz1ySOwh8suuSWJP5CMPHXJXyH0qlvMUw28c8kjPp-1r2DNIi6MWs6H1aE1oWoIMcE0qf1JM98hKpG4kt7Kle8Y1"/>
+</div>
+<p class="text-[15px] font-semibold leading-relaxed pr-10">Based on the diagram shown above, what is the value of the hypotenuse if the adjacent side is 8 and the opposite side is 6?</p>
+</div>
+<div class="grid grid-cols-1 gap-2">
+<div class="flex items-center px-4 py-3 rounded-xl border border-slate-200 dark:border-[#324467] text-sm">
+<span class="w-6 font-bold text-slate-400">A</span>
+<span>14 units</span>
+</div>
+<div class="flex items-center px-4 py-3 rounded-xl border-2 border-secondary-blue bg-secondary-blue/5 text-sm font-bold">
+<span class="w-6 text-secondary-blue">B</span>
+<span>10 units</span>
+<span class="material-symbols-outlined text-[18px] ml-auto text-secondary-blue">check_circle</span>
+</div>
+<div class="flex items-center px-4 py-3 rounded-xl border border-slate-200 dark:border-[#324467] text-sm">
+<span class="w-6 font-bold text-slate-400">C</span>
+<span>12 units</span>
+</div>
+<div class="flex items-center px-4 py-3 rounded-xl border border-slate-200 dark:border-[#324467] text-sm">
+<span class="w-6 font-bold text-slate-400">D</span>
+<span>9.5 units</span>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-[#192233] border border-slate-200 dark:border-[#324467] rounded-2xl p-4 shadow-sm relative">
+<div class="flex justify-between items-start mb-4">
+<div class="pr-12">
+<span class="text-xs font-bold text-secondary-blue mb-1 block uppercase tracking-wide">Question 2</span>
+<p class="text-[15px] font-semibold leading-relaxed">Which of the following graphs correctly represents the function f(x) = x² - 4?</p>
+</div>
+<div class="flex flex-col gap-2 absolute top-4 right-4">
+<button class="size-8 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-secondary-blue transition-colors">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="size-8 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-sm">delete</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="flex flex-col rounded-2xl border border-slate-200 dark:border-[#324467] overflow-hidden bg-white dark:bg-[#1e293b]">
+<div class="h-28 bg-slate-100 dark:bg-slate-800/50">
+<img alt="Graph A" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5O1LN99XgNtNaVn6lLtCgLCipX_D2jM8BPiM_Gtez6onpkbh-1r_OT2b0w7KnnoxSTiSXONPoEEOXUKyHFRYldn8ZJneCHGf7WSX7pF9H9GvUg_2y6M9_pnMVqiUYgTXumAU5vvAwqzvC1vZSWt5Us5k7EsttHkB729iYMBcdaWsU2xQ8CTPnudRrnngRuWu3VbIvwZJO2i-rC2juRKcVzoT4BLYRgfd6z7tKmHXji5QFLDNcf9S6Wpb88125TkcQNSDwjCdXaYG9"/>
+</div>
+<div class="p-3 flex items-center gap-2">
+<span class="text-xs font-bold text-slate-400">A</span>
+<span class="text-[10px] text-slate-500">Linear Slope</span>
+</div>
+</div>
+<div class="flex flex-col rounded-2xl border-2 border-secondary-blue overflow-hidden bg-secondary-blue/5">
+<div class="h-28 bg-slate-100 dark:bg-slate-800/50 relative">
+<img alt="Graph B" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfhi0hrzR8fM29k5hpbGklX3g1GubTWJ94U5rCDm8OFJd9__naif1FJXjFeBjLekjUf43MhREbwfEPIxyUVI0tEqRMvweyre3JPDT78kL3SXTeKhsTFc_MjP_IVAtWz8ARLHy_BeOGoT6PyjaGcxaSaF-t3yfyg3fGWdoeLAx1J4zs8_S9UDzs70Ol54r1uwr_gbiYHo_yWVazIeiHkOd7OutkgA0E32AandimA-5ATjN_WzbXoikCB7TrAWsPDn7vpFqsQUT7dfw-"/>
+<div class="absolute top-2 right-2 bg-secondary-blue text-white rounded-full size-5 flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+</div>
+<div class="p-3 flex items-center gap-2">
+<span class="text-xs font-bold text-secondary-blue">B</span>
+<span class="text-[10px] font-bold text-secondary-blue uppercase">Correct Parabola</span>
+</div>
+</div>
+<div class="flex flex-col rounded-2xl border border-slate-200 dark:border-[#324467] overflow-hidden bg-white dark:bg-[#1e293b]">
+<div class="h-28 bg-slate-100 dark:bg-slate-800/50">
+<img alt="Graph C" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCM4W3Vnat-S6mTtphq_Nai6TVtelYoRKyxNrtI7u5QqDg_vtFtGROOBXdLtC-1L0aBZ2ai9LjsY0ho1-NZgn5tssKhr9mqJnVukg-1zBn2pRton_U2qNa4csL35Dl7w_d1XBIc0nh_mv6PHeKXErzdzw6thkpIYhhCKQ9EIaeHzZXNkWfiHqiJfxfbIbZN4LO07Ka2wKv6GqgslVYrzfx6v_xwtYi_NG1_eIxd-9X7OM-NDKKLB-MlUi_ee9ZWJYUhNYDyniNs0aYe"/>
+</div>
+<div class="p-3 flex items-center gap-2">
+<span class="text-xs font-bold text-slate-400">C</span>
+<span class="text-[10px] text-slate-500">Circle Origin</span>
+</div>
+</div>
+<div class="flex flex-col rounded-2xl border border-slate-200 dark:border-[#324467] overflow-hidden bg-white dark:bg-[#1e293b]">
+<div class="h-28 bg-slate-100 dark:bg-slate-800/50">
+<img alt="Graph D" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVkS0Pir2YRN3ZvzFYSx-FQuSrwTNEMoonD1eJwcfiNWnT4JfszNj5D3YQIPBQHoYZfjDcFGrfR2oxF52laGRIHMiF9QqhnNPHHGhMlX2Zbw8FBFNN_H_4XxcxWYeksMxNcD-tMRpVTxy7PT-ZwOXr7JAEKjeFOo9Tsx9cncHkJ1V5fbd3lAflu3FpScJEpUQot0RL_F1DaX3GBzDke8YWeS3ooR6wN0MtN7ql-JcKt5xU4NCr7tTQWSRJO86yjMfqOXB9C6bxmiD2"/>
+</div>
+<div class="p-3 flex items-center gap-2">
+<span class="text-xs font-bold text-slate-400">D</span>
+<span class="text-[10px] text-slate-500">Sine Wave</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] z-50 p-4 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800">
+<div class="flex gap-4">
+<button class="flex-1 bg-slate-200 dark:bg-slate-800 hover:bg-red-500/10 hover:text-red-500 text-slate-600 dark:text-slate-300 font-bold py-4 rounded-2xl transition-all active:scale-[0.98]">
+                    Reject Quiz
+                </button>
+<button class="flex-1 bg-secondary-blue hover:bg-secondary-blue/90 text-white font-bold py-4 rounded-2xl shadow-xl shadow-secondary-blue/30 transition-all active:scale-[0.98]">
+                    Approve Quiz
+                </button>
+</div>
+<div class="flex justify-center mt-4 pb-2">
+<div class="w-32 h-1 bg-slate-300 dark:bg-slate-700 rounded-full"></div>
+</div>
+</footer>
+</div>
+
+</body></html>

@@ -1,0 +1,101 @@
+<!-- iOS Status Bar Mock -->
+<div class="fixed top-0 left-0 right-0 h-10 bg-background-light dark:bg-background-dark z-50 flex items-center justify-between px-6">
+<span class="text-sm font-bold">9:41</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined !text-[18px]">signal_cellular_4_bar</span>
+<span class="material-symbols-outlined !text-[18px]">wifi</span>
+<span class="material-symbols-outlined !text-[18px]">battery_very_low</span>
+</div>
+</div>
+<!-- Main Content Container (Mocking a Phone screen) -->
+<div class="relative flex min-h-screen w-full flex-col pt-10 pb-20 overflow-x-hidden">
+<!-- TopAppBar -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between">
+<div class="text-[#0d121b] dark:text-white flex size-12 shrink-0 items-center">
+<span class="material-symbols-outlined cursor-pointer">arrow_back_ios</span>
+</div>
+<h2 class="text-[#0d121b] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Examination Dashboard</h2>
+</div>
+<!-- HeadlineText -->
+<h3 class="text-[#0d121b] dark:text-white tracking-light text-2xl font-bold leading-tight px-6 text-center pb-2 pt-5">Active Exams</h3>
+<!-- EmptyState Mocking Background Content -->
+<div class="flex flex-col p-4 opacity-40 grayscale-[0.5]">
+<div class="flex flex-col items-center gap-6 rounded-xl border-2 border-dashed border-[#cfd7e7] dark:border-gray-700 px-6 py-14 bg-white dark:bg-gray-800/50">
+<div class="flex max-w-[480px] flex-col items-center gap-2">
+<p class="text-[#0d121b] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] text-center">Dashboard Mockup</p>
+<p class="text-[#0d121b] dark:text-white text-sm font-normal leading-normal text-center">Your upcoming examinations will appear here once scheduled by the administrator.</p>
+</div>
+<button class="flex min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold tracking-[0.015em]">
+<span class="truncate">Refresh</span>
+</button>
+</div>
+</div>
+<!-- List Section (Background content for depth) -->
+<div class="px-4 py-2 opacity-30">
+<div class="flex items-center gap-4 bg-white dark:bg-gray-800 p-4 rounded-xl mb-3 shadow-sm">
+<div class="bg-primary/10 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-sm">Mathematics Final</p>
+<p class="text-xs opacity-70">Starts in 2 days</p>
+</div>
+</div>
+</div>
+<!-- SNACK ALERTS SECTION (The Hero of this design) -->
+<div class="fixed bottom-8 left-0 right-0 px-4 flex flex-col gap-3 z-50">
+<!-- Success Alert -->
+<div class="flex items-center gap-4 bg-[#eefaf3] border border-[#d1fadf] px-4 py-3 rounded-xl shadow-lg ring-1 ring-black/5 animate-in slide-in-from-bottom-4">
+<div class="flex items-center gap-4 flex-1">
+<div class="text-[#027a48] flex items-center justify-center rounded-lg bg-[#d1fadf] shrink-0 size-10">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<div>
+<p class="text-[#027a48] text-sm font-bold leading-tight">Success</p>
+<p class="text-[#027a48] text-sm font-normal leading-normal truncate">Login successful! Welcome back</p>
+</div>
+</div>
+<div class="shrink-0">
+<div class="text-[#027a48] flex size-7 items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</div>
+</div>
+</div>
+<!-- Logout / Info Alert (Using Primary Color) -->
+<div class="flex items-center gap-4 bg-primary/10 border border-primary/20 px-4 py-3 rounded-xl shadow-lg ring-1 ring-black/5">
+<div class="flex items-center gap-4 flex-1">
+<div class="text-primary flex items-center justify-center rounded-lg bg-primary/20 shrink-0 size-10">
+<span class="material-symbols-outlined">info</span>
+</div>
+<div>
+<p class="text-primary text-sm font-bold leading-tight">System Update</p>
+<p class="text-primary text-sm font-normal leading-normal truncate">You have been logged out successfully</p>
+</div>
+</div>
+<div class="shrink-0">
+<div class="text-primary flex size-7 items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</div>
+</div>
+</div>
+<!-- Error Alert -->
+<div class="flex items-center gap-4 bg-[#fef3f2] border border-[#fee4e2] px-4 py-3 rounded-xl shadow-lg ring-1 ring-black/5">
+<div class="flex items-center gap-4 flex-1">
+<div class="text-[#b42318] flex items-center justify-center rounded-lg bg-[#fee4e2] shrink-0 size-10">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<div>
+<p class="text-[#b42318] text-sm font-bold leading-tight">Authentication Error</p>
+<p class="text-[#b42318] text-sm font-normal leading-normal truncate">Invalid OTP. Please try again</p>
+</div>
+</div>
+<div class="shrink-0">
+<div class="text-[#b42318] flex size-7 items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</div>
+</div>
+</div>
+</div>
+<!-- iOS Home Indicator -->
+<div class="fixed bottom-2 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
+</div>

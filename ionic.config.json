@@ -1,0 +1,7 @@
+{
+  "name": "eduflow",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

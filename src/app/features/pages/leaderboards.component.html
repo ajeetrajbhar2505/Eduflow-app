@@ -1,0 +1,159 @@
+<!-- Top Navigation -->
+<div class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="flex items-center p-4 pb-2 justify-between">
+<div class="flex size-12 shrink-0 items-center justify-start">
+<span class="material-symbols-outlined cursor-pointer">arrow_back_ios</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center">Leaderboards</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex items-center justify-center rounded-lg h-12 bg-transparent gap-2 text-base font-bold p-0">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+</div>
+<!-- Segmented Control Toggle -->
+<div class="flex px-4 py-3">
+<div class="flex h-12 flex-1 items-center justify-center rounded-xl bg-slate-200 dark:bg-[#232f48] p-1">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-white dark:has-[:checked]:bg-background-dark has-[:checked]:shadow-sm has-[:checked]:text-primary text-slate-500 dark:text-[#92a4c9] text-sm font-semibold transition-all">
+<span class="truncate">My Class</span>
+<input checked="" class="hidden" name="leaderboard-type" type="radio" value="My Class"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-white dark:has-[:checked]:bg-background-dark has-[:checked]:shadow-sm has-[:checked]:text-primary text-slate-500 dark:text-[#92a4c9] text-sm font-semibold transition-all">
+<span class="truncate">Global</span>
+<input class="hidden" name="leaderboard-type" type="radio" value="Global"/>
+</label>
+</div>
+</div>
+</div>
+<!-- Podium Section -->
+<div class="relative px-4 pt-8 pb-4 overflow-hidden podium-gradient">
+<div class="flex items-end justify-center gap-2 max-w-sm mx-auto">
+<!-- 2nd Place -->
+<div class="flex flex-col items-center flex-1 pb-4">
+<div class="relative mb-2">
+<div class="w-16 h-16 rounded-full border-4 border-slate-300 dark:border-slate-500 bg-cover bg-center" data-alt="Profile picture of 2nd place student" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBB4rxVPZM35UzWtY4uyuqAjtB2TFXlTwSCY23phJ3iYrIO1A-PDcoC4rdoTxvdu_DopD8SmENz0eQX66dGk9zu8lJx9_FIjq5TOrWroQCTE-KTzn3bKl8boqGsL1mjLNS6XwhURCrbYPWAvF3wclQXBK8t3WjMSVfRcl7zMaVlY_02Ux7bq_N1eOuHbk3tpcWhWZwVOdxhWLBcznDgPPFtSby2rC19Ex971_PknUSnVyjoJq4JpM5w1X93WtrrXEzr80gAR80aC4al')"></div>
+<div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-slate-400 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">2ND</div>
+</div>
+<p class="text-sm font-bold truncate w-full text-center">Sarah K.</p>
+<p class="text-xs text-slate-500 dark:text-[#92a4c9] font-medium">2,840 pts</p>
+<div class="w-full h-20 bg-slate-200 dark:bg-[#232f48] rounded-t-lg mt-3 flex items-start justify-center pt-2">
+<span class="material-symbols-outlined text-slate-400">workspace_premium</span>
+</div>
+</div>
+<!-- 1st Place -->
+<div class="flex flex-col items-center flex-1 z-10">
+<div class="relative mb-3">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 text-yellow-500 animate-pulse">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1">emoji_events</span>
+</div>
+<div class="w-24 h-24 rounded-full border-4 border-yellow-500 bg-cover bg-center shadow-[0_0_20px_rgba(234,179,8,0.3)]" data-alt="Profile picture of 1st place student" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDrvZqsJp5PHgm3Rn0z9G14lFnyeBzL8srbSW33ovKGIzpMcQDMOjczKx22DSFFICfzF8FAGm8gFTaijPhuZdgvYja74KIYZPDz4mvRoec6-za770tiRwesTZROZylMEpKS7LPbgKHN7Tw8Z-H1nGL-20UZcbkUS46jsEppDwUu94cHbNvz2Y4wHGOEHXGbjwuTQmplW5r8tcBSaC5x9_q6FDBOBBXrlP5iBAtBWdvezyO9ipDRnK_MO1mPmgndF8tsAfEXvVJgVPPT')"></div>
+<div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-yellow-500 text-white text-xs font-bold px-3 py-1 rounded-full">1ST</div>
+</div>
+<p class="text-base font-black truncate w-full text-center">Alex Johnson</p>
+<p class="text-sm text-primary font-bold">3,120 pts</p>
+<div class="w-full h-32 bg-primary rounded-t-xl mt-3 flex items-start justify-center pt-4 shadow-lg">
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-white/50 text-3xl">bolt</span>
+<span class="text-[10px] text-white/70 font-bold uppercase tracking-widest">Master</span>
+</div>
+</div>
+</div>
+<!-- 3rd Place -->
+<div class="flex flex-col items-center flex-1 pb-4">
+<div class="relative mb-2">
+<div class="w-16 h-16 rounded-full border-4 border-orange-400/50 dark:border-orange-800 bg-cover bg-center" data-alt="Profile picture of 3rd place student" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBj9WQRzbrORl_j_7xUj3M9W6GB_fSW3CJCCpxFHF0kO9HQRaiM_0AAqFfuq3zr1WG2H8gIIlfPorwwTibIOkTjd4IaNOPxvkUqjvyvyBMn83QLmT5iOHo8qDifNGisU-0bx3L9TLW31z66biwMgxML5N9kf2etPjUmfSR65Ps1fyzqxPTLYxqW9NY0DnbPmjtwTvZAOK_0iiwBqGuKWzzXG-b68FvuKpYrMldbasHy_tH-BZ_8Z0PchttZy0C9C0YteJcRT07j_Kom')"></div>
+<div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-orange-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">3RD</div>
+</div>
+<p class="text-sm font-bold truncate w-full text-center">Mike Ross</p>
+<p class="text-xs text-slate-500 dark:text-[#92a4c9] font-medium">2,450 pts</p>
+<div class="w-full h-16 bg-slate-200 dark:bg-[#232f48] rounded-t-lg mt-3 flex items-start justify-center pt-2">
+<span class="material-symbols-outlined text-slate-400">military_tech</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Scrollable Ranking List -->
+<div class="px-4 pb-32">
+<div class="flex flex-col gap-2">
+<!-- Rank Item 4 -->
+<div class="flex items-center gap-4 p-4 rounded-xl bg-white dark:bg-[#1a2333] border border-slate-100 dark:border-slate-800 shadow-sm">
+<span class="w-6 text-sm font-bold text-slate-400 dark:text-slate-500">4</span>
+<div class="size-10 rounded-full bg-cover bg-center" data-alt="User avatar rank 4" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD4vrnx_xNS5XhMPYhOSN-jCd2odt6DG7P3pWWdbRwjdg7KGlOXaJPaTZn5fPiFjKTg4so0ePxaZDsTjvp2OCOTiPsnIiHKqSrp9RNXCiC1pucVMbQGYXEYoTfZzEeu-tbGI2Dt0KSmwGExFcGZ4o_ixdoATWB_S__Gwx60IUlVs-gcPUOiym2wGYhDeFXVWq7l4YzY-AEhW60yh0xA1FcmRDeA62hth-8xhaqBArKMnZ6kFDvZS6U3aCaGQv2R_1KCXSHnMrqIsfHg')"></div>
+<div class="flex-1">
+<p class="text-sm font-bold">Emma Wilson</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-green-500" style="font-variation-settings: 'FILL' 1">psychology</span>
+<p class="text-[10px] text-slate-400 uppercase font-bold tracking-tight">AI Streak: 12</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold">2,180</p>
+<p class="text-[10px] text-slate-400">pts</p>
+</div>
+</div>
+<!-- Rank Item 5 -->
+<div class="flex items-center gap-4 p-4 rounded-xl bg-white dark:bg-[#1a2333] border border-slate-100 dark:border-slate-800 shadow-sm">
+<span class="w-6 text-sm font-bold text-slate-400 dark:text-slate-500">5</span>
+<div class="size-10 rounded-full bg-cover bg-center" data-alt="User avatar rank 5" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAoV-mUQgLqTRRcSUIIeZwGLMHbyQDxBBaxyBTRHErIJct0hrKp8mazRRkEvR-aZZtKAKqW03qxz3j_eU3ttJZxpFnleCsS06Ysejt47HBeDbGkw0704viRhrWV8X7EmyvZwQLr-NLSRgc8NA3qPI6ka7SsYaQ5BgZWCEpckC23napkz5nLX8wJvvQQ4KWH3NWH56vdelIQtF4YImQQgusAh3N2G1H7ofp6bafzk2zqum_1bpmGxP_f3Z6eoSNTFw_IPQG077rCp3cs')"></div>
+<div class="flex-1">
+<p class="text-sm font-bold">David Chen</p>
+<p class="text-[10px] text-slate-400 uppercase font-bold tracking-tight">Class: Physics A</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold">2,050</p>
+<p class="text-[10px] text-slate-400">pts</p>
+</div>
+</div>
+<!-- Rank Item 6 -->
+<div class="flex items-center gap-4 p-4 rounded-xl bg-white dark:bg-[#1a2333] border border-slate-100 dark:border-slate-800 shadow-sm">
+<span class="w-6 text-sm font-bold text-slate-400 dark:text-slate-500">6</span>
+<div class="size-10 rounded-full bg-cover bg-center" data-alt="User avatar rank 6" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCtVv11cOLFcirfOpqbN8J5OygtP-fkrTq9zNaMLcLjywoXqdauqZ7km6mqMcIp64uIs0ltQmUxbQqd_hjHuw53nbja0Vg9qYOjEuWRSaeziilGXF2j5GH5kYH5OI6VHp0MJHNxXwk-WsT86p_Mg10BoBfCRm8FnOJ7yunfLM387iy6cAEq1qOHgQNJSkKyHuH-tAD2UHWjNrUqhJT-3HOy1jBmbfBRBa0RlnZDOQk0F3azqw5Mi-noSgEylmHdiOnXruRfSfO5FPM8')"></div>
+<div class="flex-1">
+<p class="text-sm font-bold">Sophia Martinez</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1">auto_awesome</span>
+<p class="text-[10px] text-slate-400 uppercase font-bold tracking-tight">AI Challenger</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold">1,990</p>
+<p class="text-[10px] text-slate-400">pts</p>
+</div>
+</div>
+<!-- Rank Item 7 -->
+<div class="flex items-center gap-4 p-4 rounded-xl bg-white dark:bg-[#1a2333] border border-slate-100 dark:border-slate-800 shadow-sm">
+<span class="w-6 text-sm font-bold text-slate-400 dark:text-slate-500">7</span>
+<div class="size-10 rounded-full bg-cover bg-center" data-alt="User avatar rank 7" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC2EVndx39kDV_RBsiwEGUFWuUDH1LspJakMlLUjTKGq5hEg8uyGSr6hCi8kZAG35LrWl4YTt5M7WdwJ9R1I5jXNTQwcr7DYrff2qyrckGeNw-5r3e0moMCjSSFqj3zsWYpH6X5CiP4h31k7LSkgdTsQTjjkyMA2MEcDSBjpbaHQ_pRow7KoiKuaQFbzFpcd0LbMkv8s1Zj5MIqEIQduW3xCt7uojmI7oWDM1l9KUKqV5_c-KMFnwPgFfHMKaaLnHs7OjKs-pkbxXy6')"></div>
+<div class="flex-1">
+<p class="text-sm font-bold">James Taylor</p>
+<p class="text-[10px] text-slate-400 uppercase font-bold tracking-tight">Class: Biology B</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold">1,820</p>
+<p class="text-[10px] text-slate-400">pts</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky User Standing Bar (iOS Style) -->
+<div class="fixed bottom-0 left-0 right-0 p-4 pb-8 bg-white dark:bg-[#1a2333] border-t border-slate-200 dark:border-slate-800 rounded-t-3xl shadow-[0_-8px_20px_rgba(0,0,0,0.1)]">
+<div class="flex items-center gap-4 bg-primary/10 dark:bg-primary/20 p-3 rounded-2xl border border-primary/20">
+<div class="flex flex-col items-center justify-center bg-primary text-white font-black size-12 rounded-xl shadow-md">
+<span class="text-xs">#</span>
+<span class="text-xl leading-none">12</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-end mb-1">
+<p class="text-sm font-bold">You are doing great!</p>
+<p class="text-xs font-semibold text-primary">1,420 pts</p>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 65%"></div>
+</div>
+<p class="text-[10px] text-slate-500 dark:text-[#92a4c9] mt-1 font-medium">80 pts to reach Rank 11</p>
+</div>
+<div class="size-10 rounded-full border-2 border-primary overflow-hidden">
+<div class="size-full bg-cover bg-center" data-alt="Your profile avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDqG634Rix7fOOIZZlVzu2xplenCnQaWLdTuX5gO8L26axJogSY8dlns2rRiGKzzy3EGNrAl4XWV60r6i8KgxVp9H0UnUuqG9_CbfBpKOGT56kHT6ckw2YSHDDehY5ewZjKbq9j277kwcfbBeEHiPvEYW8tsCqLjQNRhn9ZHnJWULOWV9n224yitIJTNoAeyTCq4vuO5z4R_rvIZo6E3SmXOUh9Vi0jiDBl-jp9TsuRh9nnYlKyFaIrgg5ROxdAcbwWDJimO4_edvRc')"></div>
+</div>
+</div>
+</div>

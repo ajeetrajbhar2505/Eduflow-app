@@ -1,0 +1,94 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: "Lexend", "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #0f172a;
+  background-color: #f6f6f8;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background: #f6f6f8;
+  font-family: "Montserrat", "Lexend", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #0f172a;
+  min-height: max(884px, 100dvh);
+  overflow-x: hidden;
+}
+
+html.dark body {
+  background: #101622;
+  color: #e5e7eb;
+}
+
+/* Override Ionic defaults to allow native scrolling for stitched pages */
+html,
+body {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: auto !important;
+}
+app-root,
+ion-app,
+ion-router-outlet {
+  display: block;
+  min-height: 100vh;
+  height: auto !important;
+  overflow: visible !important;
+}
+.app-root,
+ion-router-outlet > * {
+  display: block;
+  min-height: 100vh;
+  height: auto !important;
+  overflow: auto !important;
+}
+.ion-page {
+  position: static !important;
+  inset: auto !important;
+  min-height: 100vh;
+  height: auto !important;
+  overflow: visible !important;
+  contain: none !important;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.6) transparent;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.6);
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.question-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+  gap: 12px;
+}
+
+.glass-panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.85));
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(12px);
+}

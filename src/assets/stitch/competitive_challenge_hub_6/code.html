@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Branded Competitive Challenge Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#427cf0",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white min-h-screen">
+<div class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="flex items-center p-4 pb-2 justify-between">
+<div class="flex size-10 shrink-0 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-800">
+<span class="material-symbols-outlined text-slate-700 dark:text-white">arrow_back_ios_new</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">Challenge Hub</h2>
+<div class="flex w-10 items-center justify-end relative">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-transparent text-slate-700 dark:text-white">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<span class="absolute top-2 right-2 flex h-2 w-2 rounded-full bg-primary ring-2 ring-background-dark"></span>
+</div>
+</div>
+<div class="px-4 py-2">
+<label class="flex flex-col w-full h-11">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full bg-slate-200 dark:bg-slate-800/50 border border-slate-300 dark:border-slate-700">
+<div class="text-slate-500 dark:text-[#92a4c9] flex items-center justify-center pl-4">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-transparent focus:ring-0 text-base font-normal leading-normal placeholder:text-slate-500 dark:placeholder:text-[#92a4c9] px-3" placeholder="Search schools or subjects"/>
+</div>
+</label>
+</div>
+<div class="flex px-4 py-3">
+<div class="flex h-10 flex-1 items-center justify-center rounded-xl bg-slate-200 dark:bg-[#1e293b] p-1 border border-slate-300 dark:border-slate-700">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-white dark:has-[:checked]:bg-[#101622] has-[:checked]:shadow-sm transition-all text-slate-600 dark:text-[#92a4c9] has-[:checked]:text-primary dark:has-[:checked]:text-white text-sm font-semibold">
+<span class="truncate">Live Now</span>
+<input checked="" class="hidden" name="status-toggle" type="radio" value="live"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-white dark:has-[:checked]:bg-[#101622] has-[:checked]:shadow-sm transition-all text-slate-600 dark:text-[#92a4c9] has-[:checked]:text-primary dark:has-[:checked]:text-white text-sm font-semibold">
+<span class="truncate">Upcoming</span>
+<input class="hidden" name="status-toggle" type="radio" value="upcoming"/>
+</label>
+</div>
+</div>
+</div>
+<main class="pb-24">
+<div class="flex items-center justify-between px-4 pt-4">
+<h2 class="text-xl font-bold tracking-tight">Inter-School Battle</h2>
+<span class="text-xs font-bold text-primary px-2 py-1 bg-primary/10 rounded-full">BATTLE MODE</span>
+</div>
+<div class="flex overflow-x-auto snap-x snap-mandatory [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+<div class="flex items-stretch p-4 gap-4">
+<div class="snap-center flex flex-col gap-4 rounded-2xl bg-slate-100 dark:bg-[#1e293b] border border-slate-200 dark:border-slate-700/50 p-4 min-w-[320px] shadow-lg">
+<div class="flex items-center justify-center py-6 bg-gradient-to-br from-primary/15 to-background-dark/20 rounded-xl relative overflow-hidden">
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, #427cf0 1px, transparent 1px); background-size: 10px 10px;"></div>
+<div class="flex items-center gap-4 relative z-10 w-full px-2">
+<div class="flex flex-col items-center flex-1">
+<div class="w-16 h-16 rounded-full bg-white p-1 shadow-[0_0_15px_rgba(255,255,255,0.1)] overflow-hidden border-2 border-primary">
+<img alt="St. Xavier High Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXZqenPnNO8X_RUOm9tpSeuO5olFMBT5IrIaxG7nztDhmzDIWEURmNyw-apkwmXJZnq1QkKQUO9F4xhreagrqwnbD4kK5PjQC9ilBk2knLHUupkInhdPeOf7Chzg2Zpr8wG1JLuuKPCfYCPzWY8GnG8aJUakEaIxwnL5jhSUsdoqJsrJTpVpa-kvyUrNQDQBqRzap3tK1UYArEQXw--19U_BqEWK0zfI1DyV_-SAFisDzGraq9dDbe_g4jmhhm6my3-bmUPTEZIETd"/>
+</div>
+<span class="text-[10px] font-bold mt-2 text-center leading-tight dark:text-white">ST. XAVIER HIGH<br/>10A</span>
+</div>
+<div class="flex flex-col items-center shrink-0">
+<div class="bg-primary text-white text-xs font-black w-8 h-8 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(66,124,240,0.5)] z-20">VS</div>
+</div>
+<div class="flex flex-col items-center flex-1">
+<div class="w-16 h-16 rounded-full bg-white p-1 shadow-[0_0_15px_rgba(255,255,255,0.1)] overflow-hidden border-2 border-red-500">
+<img alt="Modern Public Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSfr2o7yRwqpoiba6sccQPCrXqUei2NBZaOPf9XTMMFydVCaZL9l2ILj2h0aBp12uOwGsXv709RcpBb1RQPyKBdvJUS9lkvfGacYsw8_H3-7-4peTCleTeV8VfhBnUNULpu_x8ejVEznHVVLfqQKkOpzC_-wbclxIOIt-PwUugeerOFdYduJtV7kQObgbZ1NebxQfInW9KTcoLVSfOohxWdM_rv3Y56QiN88t6ttGZEAN9eN61HFsHNXp0yjZV55Icv310TpgmdLDm"/>
+</div>
+<span class="text-[10px] font-bold mt-2 text-center leading-tight dark:text-white">MODERN PUBLIC<br/>10B</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<p class="text-sm font-semibold text-primary uppercase tracking-wider">Mathematics Battle</p>
+<span class="flex items-center gap-1 text-[10px] text-green-500 font-bold uppercase animate-pulse">
+<span class="size-1.5 rounded-full bg-green-500"></span> Live
+                            </span>
+</div>
+<p class="text-slate-500 dark:text-[#92a4c9] text-xs">Join 42 classmates currently competing</p>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3.5 rounded-xl transition-all shadow-md active:scale-95 text-sm uppercase tracking-wide">
+                        Join for My Class
+                    </button>
+</div>
+<div class="snap-center flex flex-col gap-4 rounded-2xl bg-slate-100 dark:bg-[#1e293b] border border-slate-200 dark:border-slate-700/50 p-4 min-w-[320px] shadow-lg">
+<div class="flex items-center justify-center py-6 bg-gradient-to-br from-purple-500/15 to-background-dark/20 rounded-xl relative overflow-hidden">
+<div class="flex items-center gap-4 relative z-10 w-full px-2">
+<div class="flex flex-col items-center flex-1">
+<div class="w-16 h-16 rounded-full bg-white p-1 shadow-[0_0_15px_rgba(255,255,255,0.1)] overflow-hidden border-2 border-purple-500">
+<img alt="Global Academy Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDmYyATM2NwRRFfWC_PoL12XHKYRE0dxm2R3hd0wMDqn1AJj7ZZ-cQt8QP47ZfAj4LJIq0tJv4qDa7ftz9_M_JuMATiZiYfWhAix0aiRdY-gE2d0RMS0lEEtRK9PJI9F42vULyx_LLgDpSYPpsQB1Q6JePsL6Vi4q1sIN9yHzm7svy7CZndFXH5gbtnwJ_Clwot4i1RReKsBXPBPymg-0T0SNR4zFYn5lA1_Kn3--TdYCEhoUxoUhQgXkWMUnX6FzgNI0BKCu_6vvn"/>
+</div>
+<span class="text-[10px] font-bold mt-2 text-center leading-tight dark:text-white">GLOBAL ACADEMY<br/>12C</span>
+</div>
+<div class="flex flex-col items-center shrink-0">
+<div class="bg-purple-500 text-white text-xs font-black w-8 h-8 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(168,85,247,0.4)] z-20">VS</div>
+</div>
+<div class="flex flex-col items-center flex-1">
+<div class="w-16 h-16 rounded-full bg-white p-1 shadow-[0_0_15px_rgba(255,255,255,0.1)] overflow-hidden border-2 border-orange-500">
+<img alt="Heritage Int Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTidbBVAE44JQfRnM2wlPN3pN1AuE6maq-FQicg1zAQ4q5laGr6-HKngB3c-wyaNM0kpl0u2V9p8J3W355DaL9EQx3ezntfbKKr2zvYvRDzUdrEs6tQVQWJOVv09wV210vdO1wDEfbO1cQ7wBzDL8e4f7aCx4zmzuiMuEUTcK2ubSFCPo7h56RqXTf3kHlZwRA4YtXUByJz7mIDg2cRz_8fH8oTn7Pir0alqgUQSVU8voz91a04ZLTo_vq5Vfj6pRLpIM1cJpbHDlS"/>
+</div>
+<span class="text-[10px] font-bold mt-2 text-center leading-tight dark:text-white">HERITAGE INT<br/>12A</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<p class="text-sm font-semibold text-purple-500 uppercase tracking-wider">Physics Showdown</p>
+<span class="flex items-center gap-1 text-[10px] text-slate-400 font-bold uppercase">
+                                Starts in 12m
+                            </span>
+</div>
+<p class="text-slate-500 dark:text-[#92a4c9] text-xs">Final review phase: 15 students ready</p>
+</div>
+<button class="w-full bg-primary/20 hover:bg-primary/30 text-primary dark:text-white font-bold py-3.5 rounded-xl transition-all border border-primary/30 text-sm uppercase tracking-wide">
+                        Remind My Class
+                    </button>
+</div>
+</div>
+</div>
+<div class="px-4 mt-6">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-xl font-bold tracking-tight">Open Challenges</h2>
+<button class="text-primary text-sm font-bold">See All</button>
+</div>
+<div class="flex flex-col gap-4">
+<div class="bg-slate-100 dark:bg-[#1e293b] rounded-2xl p-4 border border-slate-200 dark:border-slate-700/50 flex flex-col gap-4">
+<div class="flex items-start justify-between">
+<div class="flex gap-4">
+<div class="size-12 rounded-xl bg-orange-100 dark:bg-orange-500/20 flex items-center justify-center text-orange-600 dark:text-orange-400">
+<span class="material-symbols-outlined text-3xl">functions</span>
+</div>
+<div>
+<h3 class="font-bold text-base">Calculus Sprint</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs text-slate-500 dark:text-[#92a4c9] flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> 14m left
+                                    </span>
+<span class="text-xs text-slate-500 dark:text-[#92a4c9] flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">group</span> 1.2k+
+                                    </span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="bg-blue-100 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400 text-[10px] px-2 py-1 rounded font-bold uppercase">AI Enhanced</span>
+</div>
+</div>
+<div class="h-px bg-slate-200 dark:bg-slate-700/50 w-full"></div>
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-[10px] text-slate-400 font-bold uppercase">Potential Reward</span>
+<span class="text-sm font-bold text-yellow-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">stars</span> 450 XP
+                            </span>
+</div>
+<button class="px-4 py-2 bg-primary text-white text-sm font-bold rounded-lg shadow-md active:scale-95">
+                            Participate Individually
+                        </button>
+</div>
+</div>
+<div class="bg-slate-100 dark:bg-[#1e293b] rounded-2xl p-4 border border-slate-200 dark:border-slate-700/50 flex flex-col gap-4 opacity-90">
+<div class="flex items-start justify-between">
+<div class="flex gap-4">
+<div class="size-12 rounded-xl bg-green-100 dark:bg-green-500/20 flex items-center justify-center text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined text-3xl">science</span>
+</div>
+<div>
+<h3 class="font-bold text-base">Organic Chem Quiz</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs text-slate-500 dark:text-[#92a4c9] flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> 42m left
+                                    </span>
+<span class="text-xs text-slate-500 dark:text-[#92a4c9] flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">group</span> 850
+                                    </span>
+</div>
+</div>
+</div>
+</div>
+<div class="h-px bg-slate-200 dark:bg-slate-700/50 w-full"></div>
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-[10px] text-slate-400 font-bold uppercase">Potential Reward</span>
+<span class="text-sm font-bold text-yellow-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">stars</span> 200 XP
+                            </span>
+</div>
+<button class="px-4 py-2 bg-primary text-white text-sm font-bold rounded-lg shadow-md active:scale-95">
+                            Participate Individually
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-background-dark/90 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 px-6 py-3 flex justify-between items-center z-50">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined">rocket_launch</span>
+<span class="text-[10px] font-bold uppercase">Hub</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="text-[10px] font-bold uppercase">Ranking</span>
+</button>
+<button class="flex flex-col items-center justify-center -mt-8 size-14 rounded-full bg-primary text-white shadow-lg shadow-primary/40 ring-4 ring-white dark:ring-background-dark">
+<span class="material-symbols-outlined text-3xl">smart_toy</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="text-[10px] font-bold uppercase">Learn</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-[10px] font-bold uppercase">Profile</span>
+</button>
+</nav>
+
+</body></html>
