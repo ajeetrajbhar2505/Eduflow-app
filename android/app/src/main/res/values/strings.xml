@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">eduflow</string>
+    <string name="title_activity_main">eduflow</string>
+    <string name="package_name">com.eduflow.app</string>
+    <string name="custom_url_scheme">com.eduflow.app</string>
+</resources>
