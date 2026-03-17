@@ -1,7 +1,5 @@
 import { Routes } from '@angular/router';
 import { OnboardingShellComponent } from './onboarding-shell.component';
-import { OnboardingPlaceholderComponent } from './onboarding-placeholder.component';
-import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LoginComponent } from './login/login.component';
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
 import { SocialLoginFacebookComponent } from './social-login-facebook/social-login-facebook.component';
@@ -17,7 +15,6 @@ export const ONBOARDING_ROUTES: Routes = [
     children: [
       { path: '', redirectTo: 'splash', pathMatch: 'full' },
       { path: 'splash', component: SplashScreenComponent },
-      { path: 'hero', component: LandingPageComponent },
       { path: 'login', component: LoginComponent},
       { path: 'otp', component: OtpVerificationComponent},
       { path: 'social-login-google', component: SocialLoginGoogleComponent },

@@ -1,3 +1,142 @@
-<p>
-  profile works!
-</p>
+<div class="relative flex h-screen w-full flex-col overflow-x-hidden">
+<!-- TopAppBar -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
+<div aria-label="Go back" class="text-white flex size-12 shrink-0 items-center cursor-pointer">
+<span class="material-symbols-outlined text-black dark:text-white">arrow_back_ios</span>
+</div>
+<h2 class="text-black dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Profile</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-transparent text-black dark:text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto pb-24">
+<!-- ProfileHeader -->
+<div class="flex p-6 @container">
+<div class="flex w-full flex-col gap-4 items-center">
+<div class="flex gap-4 flex-col items-center">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-32 w-32 border-4 border-primary/20" data-alt="User profile portrait smiling student" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCqDMXys1E1jXWc3dl5y-h5aKYDoD1VV5cWCV_jQ7FkAAWU-5TFL_rIpOQZ5wPyaygYyy3E6wBpmnA7evX07pvLiFfqrxLzvHSPq9SvPB6vUb6vQJMgXzKXM3eY0SAiStriwiRJipjMM1SqCIc2-8ZI-kGKbesougV2WutYfqWCnKLC3qquhtZepbYihGwGp6R4l2qZKCZpb2AopPJxHLKkGsV1lCf6F6utAz-I7HkU0O-GMyPfBOEFEzsqIepfUJQXLSosK48ZXgy_");'>
+</div>
+<div class="absolute bottom-1 right-1 bg-primary text-white p-1 rounded-full border-2 border-background-dark">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center">
+<p class="text-black dark:text-white text-[24px] font-bold leading-tight tracking-[-0.015em] text-center">Alex Johnson</p>
+<p class="text-gray-500 dark:text-[#92a4c9] text-sm font-normal leading-normal text-center mt-1">Student ID: #AI-EXAM-9921</p>
+<div class="mt-2 inline-flex items-center gap-2 bg-primary/10 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-primary text-sm">school</span>
+<p class="text-primary text-xs font-semibold uppercase tracking-wider">Class 12 - Competitive Batch</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Stats Row (Extra Context) -->
+<div class="flex px-4 gap-3 mb-6">
+<div class="flex-1 bg-white dark:bg-[#1c2638] p-4 rounded-xl flex flex-col items-center border border-gray-100 dark:border-white/5">
+<p class="text-xs text-gray-500 dark:text-gray-400">AI Rank</p>
+<p class="text-lg font-bold text-primary">#42</p>
+</div>
+<div class="flex-1 bg-white dark:bg-[#1c2638] p-4 rounded-xl flex flex-col items-center border border-gray-100 dark:border-white/5">
+<p class="text-xs text-gray-500 dark:text-gray-400">Exams</p>
+<p class="text-lg font-bold text-black dark:text-white">128</p>
+</div>
+<div class="flex-1 bg-white dark:bg-[#1c2638] p-4 rounded-xl flex flex-col items-center border border-gray-100 dark:border-white/5">
+<p class="text-xs text-gray-500 dark:text-gray-400">Skill Score</p>
+<p class="text-lg font-bold text-green-500">890</p>
+</div>
+</div>
+<!-- SectionHeader: Preferences -->
+<h3 class="text-black dark:text-white text-base font-bold leading-tight tracking-[-0.015em] px-6 pb-2 pt-4 uppercase text-[12px] opacity-60">Preferences</h3>
+<div class="mx-4 overflow-hidden rounded-xl bg-white dark:bg-[#1c2638] border border-gray-100 dark:border-white/5">
+<!-- Push Notifications -->
+<div class="flex items-center gap-4 px-4 min-h-[60px] justify-between border-b border-gray-100 dark:border-white/5">
+<div class="flex items-center gap-4">
+<div class="text-white flex items-center justify-center rounded-lg bg-primary shrink-0 size-9">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</div>
+<p class="text-black dark:text-white text-base font-medium">Push Notifications</p>
+</div>
+<label class="relative flex h-[28px] w-[48px] cursor-pointer items-center rounded-full bg-gray-200 dark:bg-gray-700 transition-colors has-[:checked]:bg-primary">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="absolute left-1 h-5 w-5 rounded-full bg-white transition-all peer-checked:translate-x-5 shadow-sm"></div>
+</label>
+</div>
+<!-- Privacy Mode -->
+<div class="flex items-center gap-4 px-4 min-h-[60px] justify-between">
+<div class="flex items-center gap-4">
+<div class="text-white flex items-center justify-center rounded-lg bg-emerald-500 shrink-0 size-9">
+<span class="material-symbols-outlined text-[20px]">shield_person</span>
+</div>
+<p class="text-black dark:text-white text-base font-medium">Incognito Mode</p>
+</div>
+<label class="relative flex h-[28px] w-[48px] cursor-pointer items-center rounded-full bg-gray-200 dark:bg-gray-700 transition-colors has-[:checked]:bg-primary">
+<input class="sr-only peer" type="checkbox"/>
+<div class="absolute left-1 h-5 w-5 rounded-full bg-white transition-all peer-checked:translate-x-5 shadow-sm"></div>
+</label>
+</div>
+</div>
+<!-- SectionHeader: Account -->
+<h3 class="text-black dark:text-white text-base font-bold leading-tight tracking-[-0.015em] px-6 pb-2 pt-6 uppercase text-[12px] opacity-60">Account Settings</h3>
+<div class="mx-4 overflow-hidden rounded-xl bg-white dark:bg-[#1c2638] border border-gray-100 dark:border-white/5">
+<!-- Change Password -->
+<div class="flex items-center gap-4 px-4 min-h-[60px] justify-between border-b border-gray-100 dark:border-white/5 cursor-pointer active:bg-gray-50 dark:active:bg-white/5">
+<div class="flex items-center gap-4">
+<div class="text-white flex items-center justify-center rounded-lg bg-orange-400 shrink-0 size-9">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<p class="text-black dark:text-white text-base font-medium">Change Password</p>
+</div>
+<span class="material-symbols-outlined text-gray-400">chevron_right</span>
+</div>
+<!-- Help & Support -->
+<div class="flex items-center gap-4 px-4 min-h-[60px] justify-between border-b border-gray-100 dark:border-white/5 cursor-pointer active:bg-gray-50 dark:active:bg-white/5">
+<div class="flex items-center gap-4">
+<div class="text-white flex items-center justify-center rounded-lg bg-indigo-500 shrink-0 size-9">
+<span class="material-symbols-outlined text-[20px]">help</span>
+</div>
+<p class="text-black dark:text-white text-base font-medium">Help &amp; Support</p>
+</div>
+<span class="material-symbols-outlined text-gray-400">chevron_right</span>
+</div>
+<!-- Log Out -->
+<div class="flex items-center gap-4 px-4 min-h-[60px] justify-between cursor-pointer active:bg-red-50 dark:active:bg-red-900/10">
+<div class="flex items-center gap-4">
+<div class="text-white flex items-center justify-center rounded-lg bg-red-500 shrink-0 size-9">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+</div>
+<p class="text-red-500 text-base font-semibold">Log Out</p>
+</div>
+<span class="material-symbols-outlined text-red-300">chevron_right</span>
+</div>
+</div>
+<!-- Footer Info -->
+<div class="text-center mt-8 pb-10">
+<p class="text-xs text-gray-500 dark:text-gray-500">Version 2.4.1 (Build 449)</p>
+<p class="text-xs text-gray-500 dark:text-gray-500 mt-1">AI Exam Pro © 2024</p>
+</div>
+</div>
+<!-- Bottom Tab Bar (Contextual for Mobile App) -->
+<div class="fixed bottom-0 left-0 right-0 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-t border-gray-100 dark:border-white/5 px-6 py-3 flex justify-between items-center z-20">
+<div class="flex flex-col items-center text-gray-400">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] mt-1 font-medium">Home</span>
+</div>
+<div class="flex flex-col items-center text-gray-400">
+<span class="material-symbols-outlined">quiz</span>
+<span class="text-[10px] mt-1 font-medium">Exams</span>
+</div>
+<div class="flex flex-col items-center text-gray-400">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-[10px] mt-1 font-medium">AI Insights</span>
+</div>
+<div class="flex flex-col items-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-[10px] mt-1 font-medium">Profile</span>
+</div>
+</div>
+</div>

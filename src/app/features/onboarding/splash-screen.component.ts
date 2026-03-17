@@ -96,7 +96,7 @@ export class SplashScreenComponent {
 
   constructor(){
     setTimeout(() => {
-      this.router.navigate(['/onboarding/hero'])
+      this.router.navigate(['/onboarding/login'])
     }, 2000);
   }
 
