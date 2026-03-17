@@ -5,6 +5,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ExamsComponent } from './exams/exams.component';
 import { ExamInstructionsComponent } from './exam-instructions/exam-instructions.component';
+import { RankingsComponent } from './rankings/rankings.component';
+import { HistoryComponent } from './history/history.component';
 
 export const WORKSPACE_ROUTES: Routes = [
   {
@@ -16,7 +18,8 @@ export const WORKSPACE_ROUTES: Routes = [
       { path: 'profile', component: ProfileComponent, data: { title: 'SCREEN_227 · Student Dashboard' } },
       { path: 'exams', component: ExamsComponent, data: { title: 'SCREEN_227 · Student Dashboard' } },
       { path: 'exam-instructions', component: ExamInstructionsComponent, data: { title: 'SCREEN_227 · Student Dashboard' } },
-      { path: 'catalog', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_226 · Exam Catalog' } },
+      { path: 'rankings', component: RankingsComponent, data: { title: 'SCREEN_226 · Exam Catalog' } },
+      { path: 'history', component: HistoryComponent, data: { title: 'SCREEN_226 · Exam Catalog' } },
       { path: 'catalog-empty', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_73 · Empty Catalog' } },
       { path: 'partner', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_116 · Partner Profile' } },
       { path: 'ai-chat', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_55 · AI Chat Assistant' } },
