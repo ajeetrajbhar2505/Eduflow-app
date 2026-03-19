@@ -13,6 +13,7 @@ import { MalpracticeAlertComponent } from './live-examination/malpractice-alert/
 import { ExamResultComponent } from './exam-result/exam-result.component';
 import { ReviewQuestionsComponent } from './review-questions/review-questions.component';
 import { ReviewSelectedQuestionsComponent } from './review-selected-questions/review-selected-questions.component';
+import { PartnerInstitutionProfileComponent } from './partner-institution-profile/partner-institution-profile.component';
 
 export const WORKSPACE_ROUTES: Routes = [
   {
@@ -32,6 +33,7 @@ export const WORKSPACE_ROUTES: Routes = [
       { path: 'exam-result', component: ExamResultComponent, data: { title: 'SCREEN_116 · Partner Profile' } },
       { path: 'review-questions', component: ReviewQuestionsComponent, data: { title: 'SCREEN_80 · Exam Instructions' } },
       { path: 'review-selected-questions', component: ReviewSelectedQuestionsComponent, data: { title: 'SCREEN_80 · Exam Instructions' } },
+      { path: 'partner-institution-profile', component: PartnerInstitutionProfileComponent, data: { title: 'SCREEN_116 · Partner Profile' } },
       { path: 'ai-chat', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_55 · AI Chat Assistant' } },
       { path: 'exam-live', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_43 · Live Examination' } },
       { path: 'exam-grid', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_190 · Question Navigation' } },
