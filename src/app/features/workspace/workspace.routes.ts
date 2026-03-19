@@ -7,6 +7,12 @@ import { ExamsComponent } from './exams/exams.component';
 import { ExamInstructionsComponent } from './exam-instructions/exam-instructions.component';
 import { RankingsComponent } from './rankings/rankings.component';
 import { HistoryComponent } from './history/history.component';
+import { LiveExaminationComponent } from './live-examination/live-examination.component';
+import { QuestionOverviewComponent } from './live-examination/question-overview/question-overview.component';
+import { MalpracticeAlertComponent } from './live-examination/malpractice-alert/malpractice-alert.component';
+import { ExamResultComponent } from './exam-result/exam-result.component';
+import { ReviewQuestionsComponent } from './review-questions/review-questions.component';
+import { ReviewSelectedQuestionsComponent } from './review-selected-questions/review-selected-questions.component';
 
 export const WORKSPACE_ROUTES: Routes = [
   {
@@ -20,10 +26,13 @@ export const WORKSPACE_ROUTES: Routes = [
       { path: 'exam-instructions', component: ExamInstructionsComponent, data: { title: 'SCREEN_227 · Student Dashboard' } },
       { path: 'rankings', component: RankingsComponent, data: { title: 'SCREEN_226 · Exam Catalog' } },
       { path: 'history', component: HistoryComponent, data: { title: 'SCREEN_226 · Exam Catalog' } },
-      { path: 'catalog-empty', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_73 · Empty Catalog' } },
-      { path: 'partner', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_116 · Partner Profile' } },
+      { path: 'live', component: LiveExaminationComponent, data: { title: 'SCREEN_116 · Partner Profile' } },
+      { path: 'question-overview', component: QuestionOverviewComponent, data: { title: 'SCREEN_116 · Partner Profile' } },
+      { path: 'malpractice-alert', component: MalpracticeAlertComponent, data: { title: 'SCREEN_73 · Empty Catalog' } },
+      { path: 'exam-result', component: ExamResultComponent, data: { title: 'SCREEN_116 · Partner Profile' } },
+      { path: 'review-questions', component: ReviewQuestionsComponent, data: { title: 'SCREEN_80 · Exam Instructions' } },
+      { path: 'review-selected-questions', component: ReviewSelectedQuestionsComponent, data: { title: 'SCREEN_80 · Exam Instructions' } },
       { path: 'ai-chat', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_55 · AI Chat Assistant' } },
-      { path: 'instructions', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_80 · Exam Instructions' } },
       { path: 'exam-live', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_43 · Live Examination' } },
       { path: 'exam-grid', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_190 · Question Navigation' } },
       { path: 'malpractice', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_40 · Malpractice Alert' } },

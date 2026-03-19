@@ -1,0 +1,60 @@
+<div class="fixed inset-0 z-0 flex flex-col pointer-events-none opacity-50 grayscale select-none">
+<header class="border-b border-[#324467]/30 p-4">
+<div class="flex justify-between items-center mb-4">
+<div class="size-10 bg-[#324467]/20 rounded-full"></div>
+<div class="h-6 w-32 bg-[#324467]/40 rounded"></div>
+<div class="size-10 bg-[#324467]/20 rounded-full"></div>
+</div>
+<div class="h-1.5 w-full rounded-full bg-[#324467]/40"></div>
+</header>
+<main class="p-4 flex flex-col gap-6">
+<div class="flex justify-center gap-3">
+<div class="h-12 w-16 bg-[#1c263a] rounded-xl"></div>
+<div class="h-12 w-16 bg-[#1c263a] rounded-xl border border-primary/20"></div>
+<div class="h-12 w-16 bg-[#1c263a] rounded-xl border border-primary/20"></div>
+</div>
+<div class="h-8 w-3/4 bg-[#324467]/30 rounded"></div>
+<div class="space-y-3">
+<div class="h-16 w-full border border-primary/20 bg-primary/5 rounded-xl"></div>
+<div class="h-16 w-full border border-[#324467]/30 rounded-xl"></div>
+<div class="h-16 w-full border border-[#324467]/30 rounded-xl"></div>
+</div>
+</main>
+</div>
+<div class="fixed inset-0 z-50 bg-black/60 blur-overlay flex items-center justify-center p-6">
+<div class="w-full max-w-sm bg-[#1c263a] rounded-[2rem] border border-white/10 shadow-2xl overflow-hidden flex flex-col items-center text-center p-8 animate-in fade-in zoom-in duration-300">
+<div class="relative mb-6">
+<div class="absolute inset-0 bg-danger/20 blur-2xl rounded-full scale-150"></div>
+<div class="relative flex items-center justify-center size-20 rounded-full bg-danger/10 border-2 border-danger/30">
+<span class="material-symbols-outlined text-5xl text-danger fill-0">shield</span>
+<div class="absolute -top-1 -right-1 size-7 bg-danger rounded-full flex items-center justify-center border-4 border-[#1c263a]">
+<span class="material-symbols-outlined text-white text-lg font-bold">priority_high</span>
+</div>
+</div>
+</div>
+<h1 class="text-2xl font-bold text-white mb-3">Malpractice Detected</h1>
+<p class="text-[#92a4c9] text-sm leading-relaxed mb-8 px-2">
+                Multiple window switches or unauthorized movements detected. For security reasons, your exam has been paused and flagged.
+            </p>
+<div class="w-full space-y-3">
+<button class="w-full h-14 bg-danger hover:bg-danger/90 text-white font-bold rounded-2xl flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg shadow-danger/20">
+<span class="material-symbols-outlined">support_agent</span>
+                    Contact Proctor
+                </button>
+<button routerLink="/workspace/live" class="w-full h-14 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-2xl border border-white/10 transition-transform active:scale-95">
+                    Return to Home
+                </button>
+</div>
+<div class="mt-8 pt-6 border-t border-white/5 w-full">
+<p class="text-[10px] text-[#92a4c9] uppercase tracking-[0.2em] font-medium mb-1">Reference ID</p>
+<p class="text-xs font-mono text-white/50">#EXM-992-ALERT-04</p>
+</div>
+</div>
+</div>
+<footer class="fixed bottom-0 w-full p-4 pb-8 opacity-30 grayscale pointer-events-none">
+<div class="flex gap-3 mb-6">
+<div class="flex-1 h-12 bg-[#232f48] rounded-xl"></div>
+<div class="flex-1 h-12 border border-orange-400/50 rounded-xl"></div>
+<div class="flex-1 h-12 bg-primary rounded-xl"></div>
+</div>
+</footer>

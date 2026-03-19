@@ -16,6 +16,7 @@ module.exports = {
         'background-dark': '#0f1923',
         'border-gray': '#E2E8F0',
         'accent-blue': '#359EFF',
+        "danger": "#ef4444",
       },
       fontFamily: {
         display: ['"Inter"', 'system-ui', 'sans-serif'],
@@ -25,6 +26,8 @@ module.exports = {
       boxShadow: {
         'glow-blue': '0 0 32px rgba(76, 125, 242, 0.4)',
       },
+      borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+
     },
   },
   plugins: [

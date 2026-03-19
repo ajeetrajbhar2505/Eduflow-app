@@ -1,0 +1,7 @@
+  .custom-radio:checked + .option-card {
+            border-color: #38bdf8;
+            background-color: rgba(56, 189, 248, 0.1);
+        }
+        .custom-radio:checked + .option-card .check-icon {
+            display: flex;
+        }

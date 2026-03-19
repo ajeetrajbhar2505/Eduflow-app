@@ -1,0 +1,12 @@
+.radio-dot-svg {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCnr09WxVIGM2x7wBv7K4p4igb51YrydTv0ksqN3vTIHQk_ifYfdizxxeAbGW7CVvjTxJw4dbUT9foaJu9Hj8lUO9tiP43HIR1ZrBSaca7Jwem-AhJo2YGO31IElLswsALcmgxs2jSHPBgRqJfo1PzDeLZVn1H_4icYJvPGk6_Ook8hEazdwQhjsnfkyoBGP2b8CKEfZdOuYxZpbdihzYr5dXQJBU3k0pTG6JZpyUvEQFpZZkfspn9T7kprQ3RRJckvUMtykLGpv_rx)
+}
+
+.custom-radio:checked+.option-card {
+    border-color: #38bdf8;
+    background-color: rgba(56, 189, 248, 0.1);
+}
+
+.custom-radio:checked+.option-card .check-icon {
+    display: flex;
+}
