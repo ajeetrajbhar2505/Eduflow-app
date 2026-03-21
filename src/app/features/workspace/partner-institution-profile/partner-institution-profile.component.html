@@ -79,40 +79,39 @@
             </div>
         </div>
     </div>
-    <div class="mt-4">
-        <div class="flex border-b border-slate-200 dark:border-[#3b4354] px-4 gap-8">
-            <!-- Active Exams Tab -->
-            <a (click)="setActiveTab('activeExams')"
-                class="flex flex-col items-center justify-center border-b-[3px] pb-[13px] pt-4 cursor-pointer"
-                [ngClass]="{
+<div class="mt-4">
+    <div class="flex border-b border-slate-200 dark:border-[#3b4354]">
+        <!-- Active Exams Tab -->
+        <a (click)="setActiveTab('activeExams')"
+            class="flex-1 flex flex-col items-center justify-center border-b-[3px] pb-[13px] pt-4 cursor-pointer"
+            [ngClass]="{
                'border-b-primary text-slate-900 dark:text-white': tabFlags.activeExams,
                'border-b-transparent text-slate-500 dark:text-[#9da6b9]': !tabFlags.activeExams
            }">
-                <p class="text-sm font-bold leading-normal tracking-[0.015em]">Active Exams</p>
-            </a>
+            <p class="text-sm font-bold leading-normal tracking-[0.015em]">Exams</p>
+        </a>
 
-            <!-- Achievements Tab -->
-            <a (click)="setActiveTab('achievements')"
-                class="flex flex-col items-center justify-center border-b-[3px] pb-[13px] pt-4 cursor-pointer"
-                [ngClass]="{
+        <!-- Achievements Tab -->
+        <a (click)="setActiveTab('achievements')"
+            class="flex-1 flex flex-col items-center justify-center border-b-[3px] pb-[13px] pt-4 cursor-pointer"
+            [ngClass]="{
                'border-b-primary text-slate-900 dark:text-white': tabFlags.achievements,
                'border-b-transparent text-slate-500 dark:text-[#9da6b9]': !tabFlags.achievements
            }">
-                <p class="text-sm font-bold leading-normal tracking-[0.015em]">Achievements</p>
-            </a>
+            <p class="text-sm font-bold leading-normal tracking-[0.015em]">Achievements</p>
+        </a>
 
-            <!-- Reviews Tab -->
-            <a (click)="setActiveTab('reviews')"
-                class="flex flex-col items-center justify-center border-b-[3px] pb-[13px] pt-4 cursor-pointer"
-                [ngClass]="{
+        <!-- Reviews Tab -->
+        <a (click)="setActiveTab('reviews')"
+            class="flex-1 flex flex-col items-center justify-center border-b-[3px] pb-[13px] pt-4 cursor-pointer"
+            [ngClass]="{
                'border-b-primary text-slate-900 dark:text-white': tabFlags.reviews,
                'border-b-transparent text-slate-500 dark:text-[#9da6b9]': !tabFlags.reviews
            }">
-                <p class="text-sm font-bold leading-normal tracking-[0.015em]">Reviews</p>
-            </a>
-        </div>
+            <p class="text-sm font-bold leading-normal tracking-[0.015em]">Reviews</p>
+        </a>
     </div>
-
+</div>
     <!-- Active exam Section -->
     @if (tabFlags.activeExams) {
     <div class="flex items-center justify-between px-4 pb-2 pt-6">
