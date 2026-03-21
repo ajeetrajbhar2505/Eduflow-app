@@ -1,0 +1,35 @@
+<div class="h-24 w-full flex justify-center items-end pb-2 bg-background-light dark:bg-background-dark">
+</div>
+<nav
+  class="fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 px-4 py-3 flex items-center justify-between pb-8">
+
+  <button class="flex flex-col items-center gap-1 transition-colors duration-200" routerLink="/workspace/dashboard"
+    routerLinkActive="text-primary" [routerLinkActiveOptions]="{exact: true}">
+    <span class="material-symbols-outlined text-[26px]">home</span>
+    <span class="text-[10px] font-bold">Home</span>
+  </button>
+
+  <button class="flex flex-col items-center gap-1 transition-colors duration-200" routerLink="/workspace/exams"
+    routerLinkActive="text-primary">
+    <span class="material-symbols-outlined text-[26px]">edit_document</span>
+    <span class="text-[10px] font-bold">Exams</span>
+  </button>
+
+  <button class="flex flex-col items-center gap-1 transition-colors duration-200" routerLink="/workspace/create"
+    routerLinkActive="text-primary">
+    <span class="material-symbols-outlined text-[26px]">add_circle</span>
+    <span class="text-[10px] font-bold">Create</span>
+  </button>
+
+  <button class="flex flex-col items-center gap-1 transition-colors duration-200" routerLink="/workspace/rankings"
+    routerLinkActive="text-primary">
+    <span class="material-symbols-outlined text-[26px]">leaderboard</span>
+    <span class="text-[10px] font-bold">Rankings</span>
+  </button>
+
+  <button class="flex flex-col items-center gap-1 transition-colors duration-200" routerLink="/workspace/history"
+    routerLinkActive="text-primary">
+    <span class="material-symbols-outlined text-[26px]">history</span>
+    <span class="text-[10px] font-bold">History</span>
+  </button>
+</nav>

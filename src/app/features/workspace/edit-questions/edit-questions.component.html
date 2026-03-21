@@ -1,0 +1,101 @@
+<div class="relative flex min-h-screen w-full flex-col max-w-[430px] mx-auto overflow-x-hidden border-x border-slate-200 dark:border-slate-800 shadow-2xl bg-white dark:bg-[#0F172A]">
+  <div class="absolute inset-0 bg-black/60 z-50"></div>
+
+
+  <!-- Bottom Sheet (Edit Question Modal) -->
+  <div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] z-[60] bg-white dark:bg-[#0F172A] rounded-t-[32px] shadow-[0_-8px_30px_rgb(0,0,0,0.5)] flex flex-col max-h-[92%] transition-transform duration-300">
+    <div class="flex justify-center py-3">
+      <div class="w-12 h-1.5 bg-slate-300 dark:bg-slate-700 rounded-full"></div>
+    </div>
+    
+    <!-- Header of Sheet -->
+    <div class="px-6 pb-4 flex items-center justify-between border-b border-slate-200 dark:border-slate-800">
+      <div class="flex items-center gap-3">
+        <div class="size-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+          <span class="material-symbols-outlined text-xl">auto_fix_high</span>
+        </div>
+        <h3 class="text-lg font-bold dark:text-white">Edit Question</h3>
+      </div>
+      <div routerLink="/workspace/verify-questions" class="size-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 cursor-pointer">
+        <span class="material-symbols-outlined text-sm font-bold">close</span>
+      </div>
+    </div>
+    
+    <!-- Scrollable Content -->
+    <div class="flex-1 overflow-y-auto custom-scrollbar px-6 py-6 space-y-6">
+      <!-- Question Text Area -->
+      <div class="space-y-2">
+        <label class="text-sm font-bold text-slate-500 uppercase tracking-wider dark:text-slate-400">Question Text</label>
+        <textarea class="w-full bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl p-4 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none min-h-[100px] resize-none dark:text-white" placeholder="Enter your question here...">Based on the diagram shown above, what is the value of the hypotenuse if the adjacent side is 8 and the opposite side is 6?</textarea>
+      </div>
+      
+      <!-- Diagram Section -->
+      <div class="space-y-3">
+        <label class="text-sm font-bold text-slate-500 uppercase tracking-wider dark:text-slate-400">Question Diagram</label>
+        <div class="relative group">
+          <img alt="Preview" class="w-full h-32 object-cover rounded-xl opacity-60 grayscale-[50%]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSetMjhg_dZRcldJJeP1P8SHSKzafRJtbfpl2T2NxhzkEitMRB5atyr3RcfUaP9q_rOyiYNXPNDZhyKaAMu5B0n0nQ17WWxMECm45KWFdd1aGHP8xbtV1sOQaLUeztSW0bh0KH8kXWOtyPz3V4jMu36E5sLsQW_9Iy2JohKxUpa18pQxKXKwHnHz1ySOwh8suuSWJP5CMPHXJXyH0qlvMUw28c8kjPp-1r2DNIi6MWs6H1aE1oWoIMcE0qf1JM98hKpG4kt7Kle8Y1"/>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <button class="bg-white/90 dark:bg-slate-900/90 text-slate-800 dark:text-white px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-2 border border-slate-200 dark:border-slate-700 shadow-sm transition-transform active:scale-95">
+              <span class="material-symbols-outlined text-base">image_search</span>
+              Change Image
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Answer Options: Radio border color matches selection (blue) -->
+      <div class="space-y-4">
+        <label class="text-sm font-bold text-slate-500 uppercase tracking-wider dark:text-slate-400 block">Answer Options</label>
+        
+        <!-- Option A (Inactive - standard border) -->
+        <div class="flex items-center gap-3 bg-white dark:bg-slate-800/40 p-3 rounded-xl border border-slate-200 dark:border-slate-700 transition-all duration-200">
+          <input class="size-5 border-2 border-slate-300 dark:border-slate-600 text-blue-600 focus:ring-blue-500 focus:ring-offset-0 bg-transparent" type="radio" name="correct-ans" value="A">
+          <span class="text-sm font-bold text-slate-400 dark:text-slate-500">A</span>
+          <input class="flex-1 bg-transparent border-none text-sm p-0 focus:ring-0 dark:text-white" type="text" value="14 units">
+          <button class="text-slate-400 hover:text-blue-500 transition-colors">
+            <span class="material-symbols-outlined text-xl">image</span>
+          </button>
+        </div>
+        
+        <!-- Option B (Correct / Active) - Border matches radio color: blue border-2 and light blue bg -->
+        <div class="flex items-center gap-3 bg-blue-50 dark:bg-blue-950/30 p-3 rounded-xl border-2 border-blue-500 transition-all duration-200">
+          <input checked class="size-5 border-2 border-blue-500 text-blue-600 focus:ring-blue-500 focus:ring-offset-0 bg-transparent" type="radio" name="correct-ans" value="B">
+          <span class="text-sm font-bold text-blue-600 dark:text-blue-400">B</span>
+          <input class="flex-1 bg-transparent border-none text-sm p-0 focus:ring-0 font-semibold dark:text-white" type="text" value="10 units">
+          <button class="text-blue-500 transition-colors">
+            <span class="material-symbols-outlined text-xl">image</span>
+          </button>
+        </div>
+        
+        <!-- Option C (Inactive) -->
+        <div class="flex items-center gap-3 bg-white dark:bg-slate-800/40 p-3 rounded-xl border border-slate-200 dark:border-slate-700 transition-all duration-200">
+          <input class="size-5 border-2 border-slate-300 dark:border-slate-600 text-blue-600 focus:ring-blue-500 focus:ring-offset-0 bg-transparent" type="radio" name="correct-ans" value="C">
+          <span class="text-sm font-bold text-slate-400 dark:text-slate-500">C</span>
+          <input class="flex-1 bg-transparent border-none text-sm p-0 focus:ring-0 dark:text-white" type="text" value="12 units">
+          <button class="text-slate-400 hover:text-blue-500 transition-colors">
+            <span class="material-symbols-outlined text-xl">image</span>
+          </button>
+        </div>
+        
+        <!-- Option D (Inactive) -->
+        <div class="flex items-center gap-3 bg-white dark:bg-slate-800/40 p-3 rounded-xl border border-slate-200 dark:border-slate-700 transition-all duration-200">
+          <input class="size-5 border-2 border-slate-300 dark:border-slate-600 text-blue-600 focus:ring-blue-500 focus:ring-offset-0 bg-transparent" type="radio" name="correct-ans" value="D">
+          <span class="text-sm font-bold text-slate-400 dark:text-slate-500">D</span>
+          <input class="flex-1 bg-transparent border-none text-sm p-0 focus:ring-0 dark:text-white" type="text" value="9.5 units">
+          <button class="text-slate-400 hover:text-blue-500 transition-colors">
+            <span class="material-symbols-outlined text-xl">image</span>
+          </button>
+        </div>
+      </div>
+      <div class="h-4"></div>
+    </div>
+    
+    <!-- Bottom Action Buttons -->
+    <div class="p-6 pt-2 bg-white dark:bg-[#0F172A] border-t border-slate-200 dark:border-slate-800">
+      <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-2xl shadow-xl transition-all active:scale-[0.98]">
+        Update Question
+      </button>
+    
+    </div>
+  </div>
+</div>
