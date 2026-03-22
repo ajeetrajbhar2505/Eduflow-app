@@ -17,6 +17,9 @@ import { PartnerInstitutionProfileComponent } from './partner-institution-profil
 import { CreateExamsComponent } from './create-exams/create-exams.component';
 import { VerifyQuestionsComponent } from './verify-questions/verify-questions.component';
 import { EditQuestionsComponent } from './edit-questions/edit-questions.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
+import { StudentsComponent } from './students/students.component';
 
 export const WORKSPACE_ROUTES: Routes = [
   {
@@ -40,6 +43,7 @@ export const WORKSPACE_ROUTES: Routes = [
       { path: 'create', component: CreateExamsComponent, data: { title: 'SCREEN_55 · AI Chat Assistant' } },
       { path: 'verify-questions', component: VerifyQuestionsComponent, data: { title: 'SCREEN_55 · AI Chat Assistant' } },
       { path: 'edit-questions', component: EditQuestionsComponent, data: { title: 'SCREEN_55 · AI Chat Assistant' } },
+      { path: 'lecture-live', component: StudentsComponent, data: { title: 'SCREEN_43 · Live Examination' } },
       { path: 'ai-chat', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_55 · AI Chat Assistant' } },
       { path: 'exam-live', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_43 · Live Examination' } },
       { path: 'exam-grid', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_190 · Question Navigation' } },
@@ -61,8 +65,8 @@ export const WORKSPACE_ROUTES: Routes = [
       { path: 'admin/manage', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_147 · Manage Quiz' } },
       { path: 'admin/edit-question', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_195 · Edit Question' } },
       { path: 'admin/edit-quiz', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_44 · Edit Quiz Details' } },
-      { path: 'system/privacy', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_214 · Privacy Policy' } },
-      { path: 'system/terms', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_6 · Terms of Service' } },
+      { path: 'system/privacy', component: PrivacyPolicyComponent, data: { title: 'SCREEN_214 · Privacy Policy' } },
+      { path: 'system/terms', component: TermsOfServiceComponent, data: { title: 'SCREEN_6 · Terms of Service' } },
       { path: 'system/reconnect', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_83 · Re-connect' } },
       { path: 'system/technical', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_221 · Technical Issue' } },
       { path: '**', redirectTo: 'dashboard' },

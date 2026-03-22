@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
+  imports : [RouterModule]
 })
 export class ProfileComponent  implements OnInit {
 

@@ -17,6 +17,13 @@ module.exports = {
         'border-gray': '#E2E8F0',
         'accent-blue': '#359EFF',
         "danger": "#ef4444",
+        "accent": "#81ecff",
+        "charcoal": "#0a0a0a",
+        "charcoal-light": "#141414",
+        "charcoal-border": "#222222",
+        "surface": "#0a0a0a",
+        "on-surface": "#ffffff",
+        "on-surface-variant": "#a0a0a0"
       },
       fontFamily: {
         display: ['"Inter"', 'system-ui', 'sans-serif'],
