@@ -40,7 +40,7 @@ export interface RoomInfo {
 
 export interface JoinResponse {
   success: boolean;
-  message?: string;
+  message: string;
   roomInfo?: RoomInfo;
 }
 

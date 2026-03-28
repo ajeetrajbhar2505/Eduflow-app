@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, OnDestroy, signal, ElementRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  signal,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -9,72 +16,40 @@ import { WebRTCService } from 'src/app/core/services/webrtc.service';
 
 @Component({
   selector: 'app-teachers',
+  standalone: true,
   templateUrl: './teachers.component.html',
   styleUrls: ['./teachers.component.scss'],
-  imports : [ReactiveFormsModule,CommonModule]
+  imports: [ReactiveFormsModule, CommonModule]
 })
 export class TeachersComponent implements OnInit, OnDestroy {
+
+@ViewChild('videoElement')
+set videoElement(video: ElementRef<HTMLVideoElement>) {
+  if (video && this.localStream) {
+    video.nativeElement.srcObject = this.localStream;
+  }
+}
   lectureForm: FormGroup;
-  @ViewChild('videoElement') videoElement!: ElementRef<HTMLVideoElement>;
   roomId: string = '';
   isLectureStarted = false;
   isRecording = false;
+
   students: any[] = [];
   messages: Message[] = [];
   raisedHands: HandRaise[] = [];
+
   localStream: MediaStream | null = null;
-  remoteStreams: Map<string, MediaStream> = new Map();
-  
 
-  // Tab state
-    tabFlags = signal({
-      overView: true,
-      chats: false
-    });
-    
-
-
-  setActiveTab(tab: 'overView' | 'chats') {
-    this.tabFlags.update(flags => ({
-      overView: tab === 'overView',
-      chats: tab === 'chats'
-    }));
-    
-    if (tab === 'chats') {
-      setTimeout(() => this.scrollToBottom(), 100);
-    }
-  }
-
-
-  /**
- * Toggle fullscreen mode for the video
- */
-toggleFullscreen() {
-  if (this.videoElement?.nativeElement) {
-    const video = this.videoElement.nativeElement;
-    
-    if (document.fullscreenElement) {
-      // Exit fullscreen
-      document.exitFullscreen().catch(err => {
-        console.error('Error exiting fullscreen:', err);
-      });
-    } else {
-      // Enter fullscreen
-      video.requestFullscreen().catch(err => {
-        console.error('Error entering fullscreen:', err);
-      });
-    }
-  }
-}
-
-   private scrollToBottom() {
-    const chatContainer = document.querySelector('.chat-messages-container');
-    if (chatContainer) {
-      chatContainer.scrollTop = chatContainer.scrollHeight;
-    }
-  }
+  // 🔥 FIX: Multiple peer connections
+  peerConnections: Map<string, RTCPeerConnection> = new Map();
 
   private subscriptions = new Subscription();
+
+  // UI state
+  tabFlags = signal({
+    overView: true,
+    chats: false
+  });
 
   constructor(
     private fb: FormBuilder,
@@ -88,35 +63,47 @@ toggleFullscreen() {
     });
   }
 
+
   async ngOnInit() {
-    // Initialize local stream
+    // ✅ Get camera + mic
     try {
-      this.localStream = await this.webRTCService.initializeLocalStream();
-    } catch (error) {
-      console.error('Failed to get media devices:', error);
+    this.localStream = await this.webRTCService.initializeLocalStream();
+
+    console.log('✅ Stream:', this.localStream);
+
+    // ✅ attach if view already ready
+    if (this.videoElement?.nativeElement) {
+      this.videoElement.nativeElement.srcObject = this.localStream;
     }
-    
-    // Socket event listeners
+
+  } catch (error) {
+    console.error('Media access error:', error);
+  }
+    // बाकी code same
+
+    // ✅ Room created
     this.subscriptions.add(
       this.socketService.onRoomCreated().subscribe(data => {
         this.roomId = data.roomId;
-        console.log('Room created:', this.roomId);
       })
     );
-    
+
+    // ✅ Student joined
     this.subscriptions.add(
       this.socketService.onStudentJoined().subscribe(student => {
         this.students.push(student);
         this.initiatePeerConnection(student.id);
       })
     );
-    
+
+    // ✅ Chat
     this.subscriptions.add(
       this.socketService.onNewMessage().subscribe((message: Message) => {
         this.messages.push(message);
       })
     );
-    
+
+    // ✅ Hand raise
     this.subscriptions.add(
       this.socketService.onHandRaised().subscribe((data: HandRaise) => {
         this.raisedHands.push(data);
@@ -125,35 +112,55 @@ toggleFullscreen() {
         }, 30000);
       })
     );
-    
-    // WebRTC signaling
+
+    // 🔥 ANSWER HANDLING (FIXED)
     this.subscriptions.add(
-      this.socketService.onAnswer().subscribe(async (data) => {
-        if (this.webRTCService['peerConnection']) {
-          await this.webRTCService.setRemoteDescription(
-            this.webRTCService['peerConnection'],
-            data.sdp
-          );
+      this.socketService.onAnswer().subscribe(async ({ from, sdp }) => {
+        const pc = this.peerConnections.get(from);
+        if (pc) {
+          await this.webRTCService.setRemoteDescription(pc, sdp);
         }
       })
     );
-    
+
+    // 🔥 ICE HANDLING (FIXED)
     this.subscriptions.add(
-      this.socketService.onIceCandidate().subscribe(async (data) => {
-        if (this.webRTCService['peerConnection']) {
-          await this.webRTCService.addIceCandidate(
-            this.webRTCService['peerConnection'],
-            data.candidate
-          );
+      this.socketService.onIceCandidate().subscribe(async ({ from, candidate }) => {
+        const pc = this.peerConnections.get(from);
+        if (pc) {
+          await this.webRTCService.addIceCandidate(pc, candidate);
         }
       })
     );
-    
-    this.webRTCService.remoteStream$.subscribe(stream => {
-      if (stream) {
-        // Handle remote streams (for student screen sharing if needed)
+  }
+
+  // 🔥 CORE FIX: Proper peer connection per student
+  async initiatePeerConnection(studentId: string) {
+    if (this.peerConnections.has(studentId)) return; // جلوگیری duplicate
+
+    const pc = await this.webRTCService.createPeerConnection();
+
+    this.peerConnections.set(studentId, pc);
+
+    // ✅ Add tracks ONLY ONCE
+    this.localStream?.getTracks().forEach(track => {
+      const alreadyAdded = pc.getSenders().some(sender => sender.track === track);
+      if (!alreadyAdded) {
+        pc.addTrack(track, this.localStream!);
       }
     });
+
+    // ICE
+    pc.onicecandidate = (event) => {
+      if (event.candidate) {
+        this.socketService.sendIceCandidate(studentId, event.candidate);
+      }
+    };
+
+    // Create offer
+    const offer = await this.webRTCService.createOffer(pc);
+    this.socketService.sendOffer(studentId, offer);
+    console.log('Sending tracks:', this.localStream?.getTracks());
   }
 
   startLecture() {
@@ -161,26 +168,13 @@ toggleFullscreen() {
       this.socketService.createRoom(
         this.lectureForm.value.teacherName,
         this.lectureForm.value.subject
-      ).subscribe(response => {
-        if (response.success) {
+      ).subscribe(res => {
+        if (res.success) {
           this.isLectureStarted = true;
-          this.roomId = response.roomId;
+          this.roomId = res.roomId;
         }
       });
     }
-  }
-
-  async initiatePeerConnection(studentId: string) {
-    const peerConnection = await this.webRTCService.createPeerConnection();
-    
-    peerConnection.onicecandidate = (event) => {
-      if (event.candidate) {
-        this.socketService.sendIceCandidate(studentId, event.candidate);
-      }
-    };
-    
-    const offer = await this.webRTCService.createOffer(peerConnection);
-    this.socketService.sendOffer(studentId, offer);
   }
 
   sendMessage(message: string) {
@@ -194,20 +188,63 @@ toggleFullscreen() {
     this.socketService.toggleRecording(this.isRecording);
   }
 
-  endLecture() {
-    this.isLectureStarted = false;
-    this.webRTCService.closeConnection();
-    this.socketService.disconnect();
-    this.router.navigate(['/']);
+  setActiveTab(tab: 'overView' | 'chats') {
+    this.tabFlags.update(flags => ({
+      overView: tab === 'overView',
+      chats: tab === 'chats'
+    }));
+
+    if (tab === 'chats') {
+      setTimeout(() => this.scrollToBottom(), 100);
+    }
+  }
+
+  toggleFullscreen() {
+    const video = this.videoElement?.nativeElement;
+    if (!video) return;
+
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      video.requestFullscreen();
+    }
   }
 
   copyRoomId() {
     navigator.clipboard.writeText(this.roomId);
-    alert('Room ID copied to clipboard!');
+    alert('Room ID copied!');
+  }
+
+  endLecture() {
+    this.isLectureStarted = false;
+
+    // 🔥 close all connections
+    this.peerConnections.forEach(pc => pc.close());
+    this.peerConnections.clear();
+
+    this.socketService.disconnect();
+    this.router.navigate(['/']);
+  }
+
+  private scrollToBottom() {
+    const chat = document.querySelector('.chat-messages-container');
+    if (chat) {
+      chat.scrollTop = chat.scrollHeight;
+    }
+  }
+
+  removePeerConnection(studentId: string) {
+    const pc = this.peerConnections.get(studentId);
+    if (pc) {
+      pc.close();
+      this.peerConnections.delete(studentId);
+    }
   }
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
-    this.webRTCService.closeConnection();
+
+    this.peerConnections.forEach(pc => pc.close());
+    this.peerConnections.clear();
   }
 }

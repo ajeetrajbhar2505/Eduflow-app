@@ -59,7 +59,7 @@
       <section class="h-[40%] w-full flex flex-col bg-black relative shrink-0">
         <div class="relative w-full h-full">
           @if (remoteStream()) {
-            <video #videoElement class="w-full h-full object-cover" autoplay playsinline></video>
+            <video #videoElement autoplay playsinline></video>
           } @else {
             <div class="w-full h-full bg-gradient-to-br from-charcoal to-charcoal-light flex items-center justify-center">
               <div class="text-center">
