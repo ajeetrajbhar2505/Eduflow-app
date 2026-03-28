@@ -14,4 +14,8 @@ export class OtpVerificationComponent  implements OnInit {
 
   ngOnInit() {}
 
+  verifyotp(){
+    sessionStorage.setItem('login','1')
+  }
+
 }

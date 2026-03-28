@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment.prod';
   providedIn: 'root'
 })
 export class SocketService {
-  private socket = io('http://localhost:3000');
+  private socket = io('https://quiznewbackend-ndlm.onrender.com');
   private currentRoomId: string | null = null;
   private currentStudentName: string | null = null;
 

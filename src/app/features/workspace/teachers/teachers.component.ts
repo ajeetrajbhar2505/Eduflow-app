@@ -8,7 +8,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HandRaise, Message } from 'src/app/core/models/lecture.model';
 import { SocketService } from 'src/app/core/services/socket.service';
@@ -19,7 +19,7 @@ import { WebRTCService } from 'src/app/core/services/webrtc.service';
   standalone: true,
   templateUrl: './teachers.component.html',
   styleUrls: ['./teachers.component.scss'],
-  imports: [ReactiveFormsModule, CommonModule]
+  imports: [ReactiveFormsModule, CommonModule, RouterLink]
 })
 export class TeachersComponent implements OnInit, OnDestroy {
 
