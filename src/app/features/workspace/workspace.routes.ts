@@ -20,6 +20,7 @@ import { EditQuestionsComponent } from './edit-questions/edit-questions.componen
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
 import { StudentsComponent } from './students/students.component';
+import { TeachersComponent } from './teachers/teachers.component';
 
 export const WORKSPACE_ROUTES: Routes = [
   {
@@ -43,7 +44,8 @@ export const WORKSPACE_ROUTES: Routes = [
       { path: 'create', component: CreateExamsComponent, data: { title: 'SCREEN_55 · AI Chat Assistant' } },
       { path: 'verify-questions', component: VerifyQuestionsComponent, data: { title: 'SCREEN_55 · AI Chat Assistant' } },
       { path: 'edit-questions', component: EditQuestionsComponent, data: { title: 'SCREEN_55 · AI Chat Assistant' } },
-      { path: 'lecture-live', component: StudentsComponent, data: { title: 'SCREEN_43 · Live Examination' } },
+      { path: 'lecture-live', component: TeachersComponent, data: { title: 'SCREEN_43 · Live Examination' } },
+      { path: 'joinlecture-live', component: StudentsComponent, data: { title: 'SCREEN_43 · Live Examination' } },
       { path: 'ai-chat', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_55 · AI Chat Assistant' } },
       { path: 'exam-live', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_43 · Live Examination' } },
       { path: 'exam-grid', component: WorkspacePlaceholderComponent, data: { title: 'SCREEN_190 · Question Navigation' } },
