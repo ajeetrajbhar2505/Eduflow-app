@@ -23,8 +23,10 @@ import { WebRTCService } from 'src/app/core/services/webrtc.service';
 })
 export class TeachersComponent implements OnInit, OnDestroy {
 
+  videoElement!: ElementRef<HTMLVideoElement>;
   @ViewChild('videoElement')
-  set videoElement(video: ElementRef<HTMLVideoElement>) {
+  set set(video: ElementRef<HTMLVideoElement>) {
+    this.videoElement = video;
     if (video && this.localStream) {
       video.nativeElement.srcObject = this.localStream;
     }
@@ -33,12 +35,13 @@ export class TeachersComponent implements OnInit, OnDestroy {
   roomId: string = '';
   isLectureStarted = false;
   isRecording = false;
-
+  micEnabled = true;
+  videoEnabled = true;
   students: any[] = [];
   messages: Message[] = [];
   raisedHands: HandRaise[] = [];
 
-  localStream:any;
+  localStream: any;
 
   // 🔥 FIX: Multiple peer connections
   peerConnections: Map<string, RTCPeerConnection> = new Map();
@@ -153,10 +156,10 @@ export class TeachersComponent implements OnInit, OnDestroy {
         this.socketService.sendIceCandidate(studentId, event.candidate);
       }
     };
-    
+
 
     // Create offer
-    this.localStream?.getTracks().forEach((track:any) => {
+    this.localStream?.getTracks().forEach((track: any) => {
       console.log(track);
       pc.addTrack(track, this.localStream)
     });
@@ -200,16 +203,6 @@ export class TeachersComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleFullscreen() {
-    const video = this.videoElement?.nativeElement;
-    if (!video) return;
-
-    if (document.fullscreenElement) {
-      document.exitFullscreen();
-    } else {
-      video.requestFullscreen();
-    }
-  }
 
   copyRoomId() {
     navigator.clipboard.writeText(this.roomId);
@@ -234,11 +227,33 @@ export class TeachersComponent implements OnInit, OnDestroy {
     }
   }
 
+  toggleMic() {
+    this.micEnabled = !this.micEnabled;
+    this.localStream?.getAudioTracks().forEach((track: any) => track.enabled = this.micEnabled);
+  }
+
+  toggleVideo() {
+    this.videoEnabled = !this.videoEnabled;
+    this.localStream?.getVideoTracks().forEach((track: any) => track.enabled = this.videoEnabled);
+  }
+
+
   removePeerConnection(studentId: string) {
     const pc = this.peerConnections.get(studentId);
     if (pc) {
       pc.close();
       this.peerConnections.delete(studentId);
+    }
+  }
+
+  toggleFullscreen() {
+    const video = this.videoElement?.nativeElement;
+    if (!video) return;
+
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      video.requestFullscreen();
     }
   }
 

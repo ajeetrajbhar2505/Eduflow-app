@@ -86,7 +86,9 @@
           class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent flex items-center justify-between">
           <div class="flex items-center gap-3">
             <span class="material-symbols-outlined text-white text-xl cursor-pointer hover:text-primary transition"
-              (click)="toggleAudio()">volume_up</span>
+              (click)="toggleAudio()">
+              {{ muted ? 'volume_off' : 'volume_up' }}
+            </span>
             <span class="material-symbols-outlined text-white text-xl cursor-pointer hover:text-primary transition"
               (click)="toggleFullscreen()">fullscreen</span>
           </div>

@@ -1,6 +1,7 @@
 <div class="min-h-screen bg-charcoal flex flex-col">
   <!-- Header - Matching student UI -->
-  <header class="bg-charcoal border-b border-charcoal-border flex justify-between items-center px-4 h-14 w-full z-50 shrink-0">
+  <header
+    class="bg-charcoal border-b border-charcoal-border flex justify-between items-center px-4 h-14 w-full z-50 shrink-0">
     <div class="flex items-center gap-3">
       <span class="material-symbols-outlined text-white text-xl cursor-pointer">arrow_back</span>
       <h1 class="font-headline font-bold tracking-tight text-white text-lg">Luminescent Academy</h1>
@@ -12,252 +13,271 @@
 
   <main class="flex-grow flex flex-col overflow-hidden">
     @if (!isLectureStarted) {
-      <!-- Create Lecture Form - Styled like student join form -->
-      <div class="flex items-center justify-center flex-grow p-4">
-        <div class="bg-charcoal-light rounded-xl p-6 max-w-md w-full border border-charcoal-border">
-          <h2 class="text-white text-xl font-bold mb-4">Create Live Lecture</h2>
-          <form [formGroup]="lectureForm" (ngSubmit)="startLecture()">
-            <div class="mb-4">
-              <label class="text-white text-sm mb-2 block">Teacher Name</label>
-              <input type="text" formControlName="teacherName" 
-                class="w-full bg-charcoal border border-charcoal-border rounded-lg px-4 py-2 text-white focus:outline-none focus:border-primary">
-            </div>
-            <div class="mb-6">
-              <label class="text-white text-sm mb-2 block">Subject</label>
-              <input type="text" formControlName="subject" 
-                class="w-full bg-charcoal border border-charcoal-border rounded-lg px-4 py-2 text-white focus:outline-none focus:border-primary">
-            </div>
-            <button type="submit" [disabled]="lectureForm.invalid"
-              class="w-full bg-primary text-white font-bold py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed">
-              Start Lecture
-            </button>
-          </form>
-        </div>
-      </div>
-    } @else {
-      <!-- Active Lecture Interface - High-fidelity like student view -->
-      
-      <!-- Video Section (Teacher's own video + students) -->
-      <section class="h-[40%] w-full flex flex-col bg-black relative shrink-0">
-        <div class="relative w-full h-full">
-          <!-- Main teacher video -->
-          <video #videoElement autoplay playsinline></video>
-          <!-- Live Badge -->
-          <div class="absolute top-3 left-3 flex items-center gap-1.5 px-2 py-0.5 bg-red-600 rounded-sm">
-            <span class="w-1.5 h-1.5 bg-white rounded-full live-pulse"></span>
-            <span class="text-[10px] font-black text-white">LIVE</span>
-          </div>
-          
-          <!-- Viewers Count (students count) -->
-          <div class="absolute top-3 right-3 flex items-center gap-1 px-2 py-0.5 bg-black/40 backdrop-blur-md border border-white/10 rounded-sm">
-            <span class="material-symbols-outlined text-[14px] text-accent">visibility</span>
-            <span class="text-[10px] font-bold text-white ml-1">{{ students.length }}</span>
-          </div>
-          
-          <!-- Video Controls -->
-          <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <span class="material-symbols-outlined text-white text-xl cursor-pointer">mic</span>
-              <span class="material-symbols-outlined text-white text-xl cursor-pointer">videocam</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <span class="text-[10px] font-mono text-white">LIVE</span>
-              <span class="material-symbols-outlined text-white text-xl cursor-pointer">fullscreen</span>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Lecture Title Overlay -->
-        <div class="absolute bottom-12 left-0 right-0 px-4 py-2 bg-black/40 backdrop-blur-sm pointer-events-none">
-          <h2 class="text-white text-sm font-headline font-bold truncate">{{ lectureForm.get('subject')?.value }}</h2>
-          <p class="text-white/80 text-[10px]">{{ lectureForm.get('teacherName')?.value }}</p>
-        </div>
-      </section>
-      
-      <!-- Students Grid - Compact view below main video -->
-      <div class="bg-charcoal-light border-b border-charcoal-border p-3">
-        <div class="flex items-center justify-between mb-2">
-          <h3 class="text-white text-xs font-bold uppercase tracking-wider">Students ({{ students.length }})</h3>
-          @if (raisedHands.length > 0) {
-            <div class="flex items-center gap-1 text-accent">
-              <span class="material-symbols-outlined text-sm">pan_tool</span>
-              <span class="text-xs font-bold">{{ raisedHands.length }} raised</span>
-            </div>
-          }
-        </div>
-        <div class="flex gap-2 overflow-x-auto pb-1 custom-scrollbar">
-          @for (student of students; track student.id) {
-            <div class="flex-shrink-0 w-20 text-center">
-              <div class="w-16 h-16 mx-auto rounded-full bg-charcoal border-2 border-primary/30 flex items-center justify-center overflow-hidden">
-                <span class="material-symbols-outlined text-white text-3xl">person</span>
-              </div>
-              <p class="text-white text-[10px] mt-1 truncate">{{ student.name }}</p>
-            </div>
-          }
-          @if (students.length === 0) {
-            <p class="text-on-surface-variant text-xs">Waiting for students to join...</p>
-          }
-        </div>
-      </div>
-      
-      <!-- Tabbed Interface (Matches Student UI) -->
-      <div class="mt-0">
-        <div class="flex border-b border-slate-200 dark:border-[#3b4354]">
-          <a (click)="setActiveTab('overView')"
-            class="flex-1 flex flex-col items-center justify-center border-b-[3px] pb-[13px] pt-4 cursor-pointer" 
-            [class.border-b-primary]="tabFlags().overView"
-            [class.text-white]="tabFlags().overView"
-            [class.text-slate-500]="!tabFlags().overView"
-            [class.border-b-transparent]="!tabFlags().overView">
-            <p class="text-sm font-bold leading-normal tracking-[0.015em]">Overview</p>
-          </a>
-          
-          <a (click)="setActiveTab('chats')"
-            class="flex-1 flex flex-col items-center justify-center border-b-[3px] pb-[13px] pt-4 cursor-pointer"
-            [class.border-b-primary]="tabFlags().chats"
-            [class.text-white]="tabFlags().chats"
-            [class.text-slate-500]="!tabFlags().chats"
-            [class.border-b-transparent]="!tabFlags().chats">
-            <p class="text-sm font-bold leading-normal tracking-[0.015em]">Live Chat</p>
-            @if (messages.length > 0) {
-              <span class="ml-1 text-xs bg-primary px-1 rounded">{{ messages.length }}</span>
-            }
-          </a>
-        </div>
-      </div>
-      
-      <!-- Tab Content: Overview -->
-      @if (tabFlags().overView) {
-        <div class="flex-grow overflow-y-auto custom-scrollbar p-4">
+    <!-- Create Lecture Form - Styled like student join form -->
+    <div class="flex items-center justify-center flex-grow p-4">
+      <div class="bg-charcoal-light rounded-xl p-6 max-w-md w-full border border-charcoal-border">
+        <h2 class="text-white text-xl font-bold mb-4">Create Live Lecture</h2>
+        <form [formGroup]="lectureForm" (ngSubmit)="startLecture()">
           <div class="mb-4">
-            <div class="flex items-center gap-2 mb-3">
-              <div class="bg-charcoal-light px-3 py-1 rounded-full border border-charcoal-border">
-                <span class="text-xs text-accent">Room ID: {{ roomId }}</span>
-              </div>
-              <button (click)="copyRoomId()" class="text-[10px] bg-primary/20 text-primary px-2 py-1 rounded-md hover:bg-primary/30 transition">
-                Copy
-              </button>
-            </div>
-            <h2 class="font-headline text-xl font-bold text-white mb-1">{{ lectureForm.get('subject')?.value }}</h2>
-            <div class="flex items-center gap-2 text-on-surface-variant text-[11px] mb-3">
-              <span class="font-bold text-accent uppercase">{{ lectureForm.get('teacherName')?.value }}</span>
-              <span class="w-1 h-1 bg-charcoal-border rounded-full"></span>
-              <span class="uppercase">Instructor</span>
-            </div>
-            <div class="flex gap-2 mb-4">
-              <span class="px-2 py-0.5 border border-charcoal-border text-[9px] font-bold uppercase text-white">Live Lecture</span>
-              <span class="px-2 py-0.5 border border-charcoal-border text-[9px] font-bold uppercase text-on-surface-variant">Interactive</span>
-            </div>
-            <p class="text-on-surface-variant text-xs leading-relaxed">
-              Welcome to the live session. Share your screen, engage with students, and manage the class from this dashboard.
-              Students can raise their hands and send messages in the chat.
-            </p>
+            <label class="text-white text-sm mb-2 block">Teacher Name</label>
+            <input type="text" formControlName="teacherName"
+              class="w-full bg-charcoal border border-charcoal-border rounded-lg px-4 py-2 text-white focus:outline-none focus:border-primary">
           </div>
-          
-          <div class="flex items-center justify-between mt-6 pt-6 border-t border-charcoal-border">
-            <div class="flex gap-2">
-              <button (click)="toggleRecording()" [class.recording]="isRecording"
-                class="flex items-center gap-2 px-4 py-2.5 bg-accent text-charcoal font-bold text-[10px] uppercase tracking-tighter">
-                <span class="material-symbols-outlined text-sm">{{ isRecording ? 'fiber_manual_record' : 'fiber_manual_record' }}</span>
-                {{ isRecording ? 'Recording' : 'Start Recording' }}
-              </button>
-              <button (click)="endLecture()"
-                class="flex items-center gap-2 px-4 py-2.5 bg-red-600/80 text-white font-bold text-[10px] uppercase tracking-tighter hover:bg-red-600 transition">
-                <span class="material-symbols-outlined text-sm">power_settings_new</span>
-                End Lecture
-              </button>
+          <div class="mb-6">
+            <label class="text-white text-sm mb-2 block">Subject</label>
+            <input type="text" formControlName="subject"
+              class="w-full bg-charcoal border border-charcoal-border rounded-lg px-4 py-2 text-white focus:outline-none focus:border-primary">
+          </div>
+          <button type="submit" [disabled]="lectureForm.invalid"
+            class="w-full bg-primary text-white font-bold py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed">
+            Start Lecture
+          </button>
+        </form>
+      </div>
+    </div>
+    } @else {
+    <!-- Active Lecture Interface - High-fidelity like student view -->
+
+    <!-- Video Section (Teacher's own video + students) -->
+    <section class="h-[40%] w-full flex flex-col bg-black relative shrink-0">
+      <div class="relative w-full h-full">
+        <!-- Main teacher video -->
+        <video #videoElement autoplay playsinline></video>
+        <!-- Live Badge -->
+        <div class="absolute top-3 left-3 flex items-center gap-1.5 px-2 py-0.5 bg-red-600 rounded-sm">
+          <span class="w-1.5 h-1.5 bg-white rounded-full live-pulse"></span>
+          <span class="text-[10px] font-black text-white">LIVE</span>
+        </div>
+
+        <!-- Viewers Count (students count) -->
+        <div
+          class="absolute top-3 right-3 flex items-center gap-1 px-2 py-0.5 bg-black/40 backdrop-blur-md border border-white/10 rounded-sm">
+          <span class="material-symbols-outlined text-[14px] text-accent">visibility</span>
+          <span class="text-[10px] font-bold text-white ml-1">{{ students.length }}</span>
+        </div>
+
+        <!-- Video Controls -->
+        <div
+          class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent flex items-center justify-between">
+
+          <div class="flex items-center gap-3">
+            <!-- Mic toggle -->
+            <span class="material-symbols-outlined text-white text-xl cursor-pointer" (click)="toggleMic()">
+              {{ micEnabled ? 'mic' : 'mic_off' }}
+            </span>
+
+            <!-- Video toggle -->
+            <span class="material-symbols-outlined text-white text-xl cursor-pointer" (click)="toggleVideo()">
+              {{ videoEnabled ? 'videocam' : 'videocam_off' }}
+            </span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <span class="text-[10px] font-mono text-white">LIVE</span>
+            <span class="material-symbols-outlined text-white text-xl cursor-pointer" (click)="toggleFullscreen()">
+              fullscreen
+            </span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Lecture Title Overlay -->
+      <div class="absolute bottom-12 left-0 right-0 px-4 py-2 bg-black/40 backdrop-blur-sm pointer-events-none">
+        <h2 class="text-white text-sm font-headline font-bold truncate">{{ lectureForm.get('subject')?.value }}</h2>
+        <p class="text-white/80 text-[10px]">{{ lectureForm.get('teacherName')?.value }}</p>
+      </div>
+    </section>
+
+    <!-- Students Grid - Compact view below main video -->
+    <div class="bg-charcoal-light border-b border-charcoal-border p-3">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="text-white text-xs font-bold uppercase tracking-wider">Students ({{ students.length }})</h3>
+        @if (raisedHands.length > 0) {
+        <div class="flex items-center gap-1 text-accent">
+          <span class="material-symbols-outlined text-sm">pan_tool</span>
+          <span class="text-xs font-bold">{{ raisedHands.length }} raised</span>
+        </div>
+        }
+      </div>
+      <div class="flex gap-2 overflow-x-auto pb-1 custom-scrollbar">
+        @for (student of students; track student.id) {
+        <div class="flex-shrink-0 w-20 text-center">
+          <div
+            class="w-16 h-16 mx-auto rounded-full bg-charcoal border-2 border-primary/30 flex items-center justify-center overflow-hidden">
+            <span class="material-symbols-outlined text-white text-3xl">person</span>
+          </div>
+          <p class="text-white text-[10px] mt-1 truncate">{{ student.name }}</p>
+        </div>
+        }
+        @if (students.length === 0) {
+        <p class="text-on-surface-variant text-xs">Waiting for students to join...</p>
+        }
+      </div>
+    </div>
+
+    <!-- Tabbed Interface (Matches Student UI) -->
+    <div class="mt-0">
+      <div class="flex border-b border-slate-200 dark:border-[#3b4354]">
+        <a (click)="setActiveTab('overView')"
+          class="flex-1 flex flex-col items-center justify-center border-b-[3px] pb-[13px] pt-4 cursor-pointer"
+          [class.border-b-primary]="tabFlags().overView" [class.text-white]="tabFlags().overView"
+          [class.text-slate-500]="!tabFlags().overView" [class.border-b-transparent]="!tabFlags().overView">
+          <p class="text-sm font-bold leading-normal tracking-[0.015em]">Overview</p>
+        </a>
+
+        <a (click)="setActiveTab('chats')"
+          class="flex-1 flex flex-col items-center justify-center border-b-[3px] pb-[13px] pt-4 cursor-pointer"
+          [class.border-b-primary]="tabFlags().chats" [class.text-white]="tabFlags().chats"
+          [class.text-slate-500]="!tabFlags().chats" [class.border-b-transparent]="!tabFlags().chats">
+          <p class="text-sm font-bold leading-normal tracking-[0.015em]">Live Chat</p>
+          @if (messages.length > 0) {
+          <span class="ml-1 text-xs bg-primary px-1 rounded">{{ messages.length }}</span>
+          }
+        </a>
+      </div>
+    </div>
+
+    <!-- Tab Content: Overview -->
+    @if (tabFlags().overView) {
+    <div class="flex-grow overflow-y-auto custom-scrollbar p-4">
+      <div class="mb-4">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="bg-charcoal-light px-3 py-1 rounded-full border border-charcoal-border">
+            <span class="text-xs text-accent">Room ID: {{ roomId }}</span>
+          </div>
+          <button (click)="copyRoomId()"
+            class="text-[10px] bg-primary/20 text-primary px-2 py-1 rounded-md hover:bg-primary/30 transition">
+            Copy
+          </button>
+        </div>
+        <h2 class="font-headline text-xl font-bold text-white mb-1">{{ lectureForm.get('subject')?.value }}</h2>
+        <div class="flex items-center gap-2 text-on-surface-variant text-[11px] mb-3">
+          <span class="font-bold text-accent uppercase">{{ lectureForm.get('teacherName')?.value }}</span>
+          <span class="w-1 h-1 bg-charcoal-border rounded-full"></span>
+          <span class="uppercase">Instructor</span>
+        </div>
+        <div class="flex gap-2 mb-4">
+          <span class="px-2 py-0.5 border border-charcoal-border text-[9px] font-bold uppercase text-white">Live
+            Lecture</span>
+          <span
+            class="px-2 py-0.5 border border-charcoal-border text-[9px] font-bold uppercase text-on-surface-variant">Interactive</span>
+        </div>
+        <p class="text-on-surface-variant text-xs leading-relaxed">
+          Welcome to the live session. Share your screen, engage with students, and manage the class from this
+          dashboard.
+          Students can raise their hands and send messages in the chat.
+        </p>
+      </div>
+
+      <div class="flex items-center justify-between mt-6 pt-6 border-t border-charcoal-border">
+        <div class="flex gap-2">
+          <button (click)="toggleRecording()" [class.recording]="isRecording"
+            class="flex items-center gap-2 px-4 py-2.5 bg-accent text-charcoal font-bold text-[10px] uppercase tracking-tighter">
+            <span class="material-symbols-outlined text-sm">{{ isRecording ? 'fiber_manual_record' :
+              'fiber_manual_record' }}</span>
+            {{ isRecording ? 'Recording' : 'Start Recording' }}
+          </button>
+          <button (click)="endLecture()"
+            class="flex items-center gap-2 px-4 py-2.5 bg-red-600/80 text-white font-bold text-[10px] uppercase tracking-tighter hover:bg-red-600 transition">
+            <span class="material-symbols-outlined text-sm">power_settings_new</span>
+            End Lecture
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+
+    <!-- Tab Content: Live Chat (Matches Student UI) -->
+    @if (tabFlags().chats) {
+    <div class="flex-grow overflow-y-auto custom-scrollbar p-4 flex flex-col">
+      <div class="space-y-4 pb-4 flex-grow">
+        @for (message of messages; track message.timestamp) {
+        @if (message.role === 'system') {
+        <div class="flex justify-center">
+          <span class="text-[10px] bg-charcoal-light px-3 py-1 text-on-surface-variant uppercase tracking-widest">
+            {{ message.message }}
+          </span>
+        </div>
+        }
+        @if (message.role === 'student') {
+        <div class="flex gap-3 items-start">
+          <div
+            class="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center shrink-0 border border-accent/30">
+            <span class="material-symbols-outlined text-accent text-lg">person</span>
+          </div>
+          <div>
+            <div class="flex items-baseline gap-2">
+              <span class="text-[11px] font-bold text-white">{{ message.userName }}</span>
+              <span class="text-[9px] text-on-surface-variant">{{ message.timestamp | date:'HH:mm' }}</span>
             </div>
+            <p class="text-xs text-on-surface-variant mt-1 leading-relaxed">{{ message.message }}</p>
           </div>
         </div>
-      }
-      
-      <!-- Tab Content: Live Chat (Matches Student UI) -->
-      @if (tabFlags().chats) {
-        <div class="flex-grow overflow-y-auto custom-scrollbar p-4 flex flex-col">
-          <div class="space-y-4 pb-4 flex-grow">
-            @for (message of messages; track message.timestamp) {
-              @if (message.role === 'system') {
-                <div class="flex justify-center">
-                  <span class="text-[10px] bg-charcoal-light px-3 py-1 text-on-surface-variant uppercase tracking-widest">
-                    {{ message.message }}
-                  </span>
-                </div>
-              }
-              @if (message.role === 'student') {
-                <div class="flex gap-3 items-start">
-                  <div class="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center shrink-0 border border-accent/30">
-                    <span class="material-symbols-outlined text-accent text-lg">person</span>
-                  </div>
-                  <div>
-                    <div class="flex items-baseline gap-2">
-                      <span class="text-[11px] font-bold text-white">{{ message.userName }}</span>
-                      <span class="text-[9px] text-on-surface-variant">{{ message.timestamp | date:'HH:mm' }}</span>
-                    </div>
-                    <p class="text-xs text-on-surface-variant mt-1 leading-relaxed">{{ message.message }}</p>
-                  </div>
-                </div>
-              }
-              @if (message.role === 'teacher') {
-                <div class="bg-accent/5 border-l-2 border-accent p-3">
-                  <div class="flex items-center gap-2 mb-1">
-                    <span class="text-[10px] font-bold text-accent uppercase tracking-tighter bg-accent/10 px-1.5 py-0.5 rounded-sm">You</span>
-                    <span class="text-[11px] font-bold text-white">{{ message.userName }}</span>
-                  </div>
-                  <p class="text-xs text-on-surface-variant leading-relaxed">{{ message.message }}</p>
-                </div>
-              }
-            } @empty {
-              <div class="flex justify-center">
-                <span class="text-[10px] text-on-surface-variant">No messages yet. Students will see your replies here.</span>
-              </div>
-            }
+        }
+        @if (message.role === 'teacher') {
+        <div class="bg-accent/5 border-l-2 border-accent p-3">
+          <div class="flex items-center gap-2 mb-1">
+            <span
+              class="text-[10px] font-bold text-accent uppercase tracking-tighter bg-accent/10 px-1.5 py-0.5 rounded-sm">You</span>
+            <span class="text-[11px] font-bold text-white">{{ message.userName }}</span>
           </div>
-          
-          <!-- Input Box Area (Matches Student UI) -->
-          <div class="border-t border-charcoal-border p-4 bg-charcoal mt-auto">
-            <div class="flex gap-3 items-center">
-              <div class="flex-1 relative">
-                <input #chatInput type="text" 
-                  placeholder="Reply to students..." 
-                  (keyup.enter)="sendMessage(chatInput.value); chatInput.value = ''"
-                  class="w-full bg-charcoal-light text-white text-sm rounded-2xl px-4 py-3 
+          <p class="text-xs text-on-surface-variant leading-relaxed">{{ message.message }}</p>
+        </div>
+        }
+        } @empty {
+        <div class="flex justify-center">
+          <span class="text-[10px] text-on-surface-variant">No messages yet. Students will see your replies here.</span>
+        </div>
+        }
+      </div>
+
+      <!-- Input Box Area (Matches Student UI) -->
+      <div class="border-t border-charcoal-border p-4 bg-charcoal mt-auto">
+        <div class="flex gap-3 items-center">
+          <div class="flex-1 relative">
+            <input #chatInput type="text" placeholder="Reply to students..."
+              (keyup.enter)="sendMessage(chatInput.value); chatInput.value = ''" class="w-full bg-charcoal-light text-white text-sm rounded-2xl px-4 py-3 
                     border-2 border-primary/30 
                     focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/30 
                     hover:border-primary/50 transition-all duration-200 
                     placeholder:text-on-surface-variant/60">
-              </div>
-              <button (click)="sendMessage(chatInput.value); chatInput.value = ''"
-                class="flex-shrink-0 bg-primary/90 backdrop-blur-sm hover:bg-primary text-white font-semibold px-5 py-3 rounded-2xl transition-all duration-200 active:scale-95 flex items-center gap-2 border border-white/20 shadow-lg shadow-primary/20 group">
-                <span class="material-symbols-outlined text-sm group-hover:rotate-12 transition-transform duration-200">send</span>
-                <span class="text-sm font-medium">Send</span>
-              </button>
-            </div>
           </div>
+          <button (click)="sendMessage(chatInput.value); chatInput.value = ''"
+            class="flex-shrink-0 bg-primary/90 backdrop-blur-sm hover:bg-primary text-white font-semibold px-5 py-3 rounded-2xl transition-all duration-200 active:scale-95 flex items-center gap-2 border border-white/20 shadow-lg shadow-primary/20 group">
+            <span
+              class="material-symbols-outlined text-sm group-hover:rotate-12 transition-transform duration-200">send</span>
+            <span class="text-sm font-medium">Send</span>
+          </button>
         </div>
-      }
-    }
-  </main>
-  
-  <!-- Floating Hand Raises Panel (When active) -->
-  @if (isLectureStarted && raisedHands.length > 0) {
-    <div class="fixed bottom-25 right-4 bg-charcoal-light border border-charcoal-border rounded-xl shadow-xl p-3 max-w-xs w-full animate-in slide-in-from-bottom-2">
-      <div class="flex items-center justify-between mb-2">
-        <h4 class="text-white text-sm font-bold flex items-center gap-1">
-          <span class="material-symbols-outlined text-accent text-base">pan_tool</span>
-          Hands Raised ({{ raisedHands.length }})
-        </h4>
-        <button class="text-on-surface-variant text-xs">Dismiss</button>
-      </div>
-      <div class="space-y-2 max-h-48 overflow-y-auto">
-        @for (hand of raisedHands; track hand.studentId) {
-          <div class="flex items-center justify-between bg-charcoal p-2 rounded-lg">
-            <span class="text-white text-sm">{{ hand.studentName }}</span>
-            <button class="btn-acknowledge text-accent text-xs bg-accent/10 px-2 py-1 rounded-md hover:bg-accent/20 transition">
-              Acknowledge
-            </button>
-          </div>
-        }
       </div>
     </div>
+    }
+    }
+  </main>
+
+  <!-- Floating Hand Raises Panel (When active) -->
+  @if (isLectureStarted && raisedHands.length > 0) {
+  <div
+    class="fixed bottom-25 right-4 bg-charcoal-light border border-charcoal-border rounded-xl shadow-xl p-3 max-w-xs w-full animate-in slide-in-from-bottom-2">
+    <div class="flex items-center justify-between mb-2">
+      <h4 class="text-white text-sm font-bold flex items-center gap-1">
+        <span class="material-symbols-outlined text-accent text-base">pan_tool</span>
+        Hands Raised ({{ raisedHands.length }})
+      </h4>
+      <button class="text-on-surface-variant text-xs">Dismiss</button>
+    </div>
+    <div class="space-y-2 max-h-48 overflow-y-auto">
+      @for (hand of raisedHands; track hand.studentId) {
+      <div class="flex items-center justify-between bg-charcoal p-2 rounded-lg">
+        <span class="text-white text-sm">{{ hand.studentName }}</span>
+        <button
+          class="btn-acknowledge text-accent text-xs bg-accent/10 px-2 py-1 rounded-md hover:bg-accent/20 transition">
+          Acknowledge
+        </button>
+      </div>
+      }
+    </div>
+  </div>
   }
 </div>

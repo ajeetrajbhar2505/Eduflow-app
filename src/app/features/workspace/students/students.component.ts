@@ -88,6 +88,7 @@ export class StudentsComponent implements OnInit, OnDestroy {
 
 
   toggleAudio() {
+  this.muted = !this.muted;
     const video = this.videoElement?.nativeElement;
     if (!video) return;
 
@@ -113,7 +114,7 @@ export class StudentsComponent implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
   private socketService = inject(SocketService);
   private webRTCService = inject(WebRTCService);
-
+  muted:boolean = false;
   joinForm: FormGroup;
 
   constructor() {
