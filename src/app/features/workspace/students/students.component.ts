@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, inject, signal, computed, effect, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, signal, computed, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -26,7 +26,6 @@ export class StudentsComponent implements OnInit, OnDestroy {
   isJoined = signal<boolean>(false);
   roomInfo = signal<RoomInfo | null>(null);
   messages = signal<Message[]>([]);
-  remoteStream = signal<MediaStream | null>(null);
   isLoading = signal<boolean>(false);
   error = signal<string>("");
   isRecording = signal<boolean>(false);
@@ -120,18 +119,12 @@ export class StudentsComponent implements OnInit, OnDestroy {
   constructor() {
     this.joinForm = this.fb.group({
       roomId: ['', Validators.required],
-      studentName: ['', Validators.required]
+      studentName: ['Pradeep', Validators.required]
     });
 
   }
 
   async ngOnInit() {
-    try {
-      this.localStream = await this.webRTCService.initializeLocalStream();
-    } catch (err) {
-      console.error('Media error:', err);
-    }
-
     this.initializeSocketListeners();
     this.initializeWebRTCListeners();
   }
@@ -155,69 +148,67 @@ export class StudentsComponent implements OnInit, OnDestroy {
 
   private initializeWebRTCListeners() {
 
-    // ✅ OFFER HANDLING
     this.subscriptions.add(
       this.socketService.onOffer().subscribe(async ({ from, sdp }) => {
+        console.log('✅ Offer received');
 
         const pc = await this.webRTCService.createPeerConnection();
-        this.peerConnection = pc;
 
-        // ✅ Add tracks safely
-        this.localStream?.getTracks().forEach(track => {
-          const alreadyAdded = pc.getSenders().some(sender => sender.track === track);
-          if (!alreadyAdded) {
-            pc.addTrack(track, this.localStream!);
+
+        // 🔥 Assign ontrack before setRemoteDescription
+        pc.ontrack = (event) => {
+          const video = this.videoElement?.nativeElement;
+          if (video && video.srcObject !== event.streams[0]) {
+            video.srcObject = event.streams[0];
+            video.onloadedmetadata = () => video.play().catch(console.error);
           }
-        });
+        };
 
-        // ✅ Set remote description
+        // Set remote description
         await this.webRTCService.setRemoteDescription(pc, sdp);
-
-        // ✅ VERY IMPORTANT
         this.isRemoteSet = true;
 
-        // ✅ Flush ICE queue
+        this.peerConnection = pc;
+        this.peerConnection.oniceconnectionstatechange = () => {
+          console.log('ICE STATE:', this.peerConnection.iceConnectionState);
+        };
+
+        // ✅ SET REMOTE
+        await this.webRTCService.setRemoteDescription(pc, sdp);
+        this.isRemoteSet = true;
+
+        // ✅ FLUSH ICE
         for (const candidate of this.iceQueue) {
           await pc.addIceCandidate(candidate);
         }
         this.iceQueue = [];
 
-        // ✅ Create answer
+        // ✅ CREATE ANSWER
         const answer = await this.webRTCService.createAnswer(pc);
         this.socketService.sendAnswer(from, answer);
 
-        // ICE
+        console.log('✅ Answer sent');
+
+        // ✅ ICE
         pc.onicecandidate = (event) => {
           if (event.candidate) {
             this.socketService.sendIceCandidate(from, event.candidate);
           }
         };
 
-        // ✅ VIDEO FIX (use ViewChild)
-        pc.ontrack = (event) => {
-          console.log('✅ TRACK RECEIVED', event);
-
-          const stream = event.streams[0];
-
-          if (this.videoElement?.nativeElement) {
-            this.videoElement.nativeElement.srcObject = stream;
-          }
-        };
+        console.log('pc.ontrack assigned:', !!pc.ontrack); // should be true
       })
-
-
-    )
-
+    );
     // ✅ ICE HANDLING (FIXED)
     this.subscriptions.add(
       this.socketService.onIceCandidate().subscribe(async ({ candidate }) => {
-        try {
-          if (!this.peerConnection) return;
+        if (!this.peerConnection) return;
 
+        try {
           if (!this.isRemoteSet) {
             this.iceQueue.push(candidate);
           } else {
-            await this.peerConnection.addIceCandidate(candidate);
+            await this.peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
           }
         } catch (err) {
           console.error('ICE error', err);

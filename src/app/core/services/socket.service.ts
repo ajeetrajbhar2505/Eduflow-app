@@ -8,21 +8,10 @@ import { environment } from 'src/environments/environment.prod';
   providedIn: 'root'
 })
 export class SocketService {
-  private socket: Socket;
+  private socket = io('http://localhost:3000');
   private currentRoomId: string | null = null;
   private currentStudentName: string | null = null;
 
-  constructor() {
-
-      this.socket = io(environment.apiURL, {
-      transports: ['websocket'],
-      reconnection: true,
-      autoConnect: true,
-      reconnectionDelay: 1000
-    });
-
-   
-  }
 
   createRoom(teacherName: string, subject: string): Observable<any> {
     return new Observable(observer => {
@@ -36,7 +25,7 @@ export class SocketService {
   joinRoom(roomId: string, studentName: string): Observable<any> {
     this.currentRoomId = roomId;
     this.currentStudentName = studentName;
-    
+
     return new Observable(observer => {
       this.socket.emit('join-room', { roomId, studentName }, (response: any) => {
         observer.next(response);
@@ -95,8 +84,8 @@ export class SocketService {
 
   sendMessage(message: string): void {
     if (this.currentRoomId && this.currentStudentName) {
-      this.socket.emit('send-message', { 
-        message, 
+      this.socket.emit('send-message', {
+        message,
         roomId: this.currentRoomId,
         userName: this.currentStudentName,
         role: 'student'
@@ -114,9 +103,9 @@ export class SocketService {
 
   raiseHand(): void {
     if (this.currentRoomId && this.currentStudentName) {
-      this.socket.emit('raise-hand', { 
+      this.socket.emit('raise-hand', {
         roomId: this.currentRoomId,
-        studentName: this.currentStudentName 
+        studentName: this.currentStudentName
       });
     } else {
       this.socket.emit('raise-hand');
@@ -125,19 +114,19 @@ export class SocketService {
 
   lowerHand(): void {
     if (this.currentRoomId && this.currentStudentName) {
-      this.socket.emit('lower-hand', { 
+      this.socket.emit('lower-hand', {
         roomId: this.currentRoomId,
-        studentName: this.currentStudentName 
+        studentName: this.currentStudentName
       });
     }
   }
 
   sendTyping(isTyping: boolean): void {
     if (this.currentRoomId && this.currentStudentName) {
-      this.socket.emit('typing', { 
+      this.socket.emit('typing', {
         roomId: this.currentRoomId,
         studentName: this.currentStudentName,
-        isTyping 
+        isTyping
       });
     }
   }

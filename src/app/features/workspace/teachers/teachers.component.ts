@@ -23,12 +23,12 @@ import { WebRTCService } from 'src/app/core/services/webrtc.service';
 })
 export class TeachersComponent implements OnInit, OnDestroy {
 
-@ViewChild('videoElement')
-set videoElement(video: ElementRef<HTMLVideoElement>) {
-  if (video && this.localStream) {
-    video.nativeElement.srcObject = this.localStream;
+  @ViewChild('videoElement')
+  set videoElement(video: ElementRef<HTMLVideoElement>) {
+    if (video && this.localStream) {
+      video.nativeElement.srcObject = this.localStream;
+    }
   }
-}
   lectureForm: FormGroup;
   roomId: string = '';
   isLectureStarted = false;
@@ -38,7 +38,7 @@ set videoElement(video: ElementRef<HTMLVideoElement>) {
   messages: Message[] = [];
   raisedHands: HandRaise[] = [];
 
-  localStream: MediaStream | null = null;
+  localStream:any;
 
   // 🔥 FIX: Multiple peer connections
   peerConnections: Map<string, RTCPeerConnection> = new Map();
@@ -58,8 +58,8 @@ set videoElement(video: ElementRef<HTMLVideoElement>) {
     private webRTCService: WebRTCService
   ) {
     this.lectureForm = this.fb.group({
-      teacherName: ['', Validators.required],
-      subject: ['', Validators.required]
+      teacherName: ['Ajit Rajbhar', Validators.required],
+      subject: ['Biology', Validators.required]
     });
   }
 
@@ -67,18 +67,20 @@ set videoElement(video: ElementRef<HTMLVideoElement>) {
   async ngOnInit() {
     // ✅ Get camera + mic
     try {
-    this.localStream = await this.webRTCService.initializeLocalStream();
+      this.localStream = await this.webRTCService.initializeLocalStream();
 
-    console.log('✅ Stream:', this.localStream);
+      if (!this.localStream) {
+        throw new Error('Stream not available');
+      }
 
-    // ✅ attach if view already ready
-    if (this.videoElement?.nativeElement) {
-      this.videoElement.nativeElement.srcObject = this.localStream;
+      if (this.videoElement?.nativeElement) {
+        this.videoElement.nativeElement.srcObject = this.localStream;
+      }
+
+    } catch (error) {
+      console.error('Media access error:', error);
+      return; // ❌ STOP if no stream
     }
-
-  } catch (error) {
-    console.error('Media access error:', error);
-  }
     // बाकी code same
 
     // ✅ Room created
@@ -143,24 +145,24 @@ set videoElement(video: ElementRef<HTMLVideoElement>) {
     this.peerConnections.set(studentId, pc);
 
     // ✅ Add tracks ONLY ONCE
-    this.localStream?.getTracks().forEach(track => {
-      const alreadyAdded = pc.getSenders().some(sender => sender.track === track);
-      if (!alreadyAdded) {
-        pc.addTrack(track, this.localStream!);
-      }
-    });
 
     // ICE
     pc.onicecandidate = (event) => {
       if (event.candidate) {
+        console.log('Sending ICE →', studentId); // 👈 ADD THIS
         this.socketService.sendIceCandidate(studentId, event.candidate);
       }
     };
+    
 
     // Create offer
+    this.localStream?.getTracks().forEach((track:any) => {
+      console.log(track);
+      pc.addTrack(track, this.localStream)
+    });
     const offer = await this.webRTCService.createOffer(pc);
+    await pc.setLocalDescription(offer); // ensure set
     this.socketService.sendOffer(studentId, offer);
-    console.log('Sending tracks:', this.localStream?.getTracks());
   }
 
   startLecture() {
@@ -185,7 +187,6 @@ set videoElement(video: ElementRef<HTMLVideoElement>) {
 
   toggleRecording() {
     this.isRecording = !this.isRecording;
-    this.socketService.toggleRecording(this.isRecording);
   }
 
   setActiveTab(tab: 'overView' | 'chats') {

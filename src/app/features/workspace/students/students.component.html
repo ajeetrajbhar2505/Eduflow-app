@@ -1,7 +1,8 @@
 <!-- students.component.html -->
 <div class="min-h-screen bg-charcoal flex flex-col">
   <!-- Header -->
-  <header class="bg-charcoal border-b border-charcoal-border flex justify-between items-center px-4 h-14 w-full z-50 shrink-0">
+  <header
+    class="bg-charcoal border-b border-charcoal-border flex justify-between items-center px-4 h-14 w-full z-50 shrink-0">
     <div class="flex items-center gap-3">
       <span routerLink="/workspace/dashboard"
         class="material-symbols-outlined text-white text-xl cursor-pointer">arrow_back</span>
@@ -14,307 +15,300 @@
 
   <main class="flex-grow flex flex-col overflow-hidden">
     @if (!isJoined()) {
-      <!-- Join Lecture Form -->
-      <div class="flex items-center justify-center flex-grow p-4">
-        <div class="bg-charcoal-light rounded-xl p-6 max-w-md w-full border border-charcoal-border">
-          <h2 class="text-white text-xl font-bold mb-4">Join Live Lecture</h2>
-          
-          @if (error()) {
-            <div class="bg-red-500/10 border border-red-500 text-red-500 px-4 py-2 rounded-lg mb-4 text-sm">
-              {{ error() }}
-            </div>
-          }
-          
-          <form [formGroup]="joinForm" (ngSubmit)="joinLecture()">
-            <div class="mb-4">
-              <label class="text-white text-sm mb-2 block">Room ID</label>
-              <input type="text" formControlName="roomId" 
-                class="w-full bg-charcoal border border-charcoal-border rounded-lg px-4 py-2 text-white focus:outline-none focus:border-primary"
-                placeholder="Enter room ID">
-            </div>
-            <div class="mb-6">
-              <label class="text-white text-sm mb-2 block">Your Name</label>
-              <input type="text" formControlName="studentName" 
-                class="w-full bg-charcoal border border-charcoal-border rounded-lg px-4 py-2 text-white focus:outline-none focus:border-primary"
-                placeholder="Enter your name">
-            </div>
-            <button type="submit" [disabled]="joinForm.invalid || isLoading()"
-              class="w-full bg-primary text-white font-bold py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary/90 transition-all">
-              @if (isLoading()) {
-                <span class="flex items-center justify-center gap-2">
-                  <span class="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></span>
-                  Joining...
-                </span>
-              } @else {
-                <span>Join Lecture</span>
-              }
-            </button>
-          </form>
+    <!-- Join Lecture Form -->
+    <div class="flex items-center justify-center flex-grow p-4">
+      <div class="bg-charcoal-light rounded-xl p-6 max-w-md w-full border border-charcoal-border">
+        <h2 class="text-white text-xl font-bold mb-4">Join Live Lecture</h2>
+
+        @if (error()) {
+        <div class="bg-red-500/10 border border-red-500 text-red-500 px-4 py-2 rounded-lg mb-4 text-sm">
+          {{ error() }}
         </div>
-      </div>
-    } @else {
-      <!-- Active Lecture Interface -->
-      
-      <!-- Video Player Section -->
-      <section class="h-[40%] w-full flex flex-col bg-black relative shrink-0">
-        <div class="relative w-full h-full">
-          @if (remoteStream()) {
-            <video #videoElement autoplay playsinline></video>
-          } @else {
-            <div class="w-full h-full bg-gradient-to-br from-charcoal to-charcoal-light flex items-center justify-center">
-              <div class="text-center">
-                <span class="material-symbols-outlined text-6xl text-on-surface-variant animate-pulse">videocam_off</span>
-                <p class="text-on-surface-variant text-sm mt-2">Waiting for teacher to start streaming...</p>
-              </div>
-            </div>
-          }
-          
-          <!-- Live Badge -->
-          <div class="absolute top-3 left-3 flex items-center gap-1.5 px-2 py-0.5 bg-red-600 rounded-sm">
-            <span class="w-1.5 h-1.5 bg-white rounded-full live-pulse"></span>
-            <span class="text-[10px] font-black text-white">LIVE</span>
-          </div>
-          
-          <!-- Recording Indicator -->
-          @if (isRecording()) {
-            <div class="absolute top-3 left-20 flex items-center gap-1 px-2 py-0.5 bg-red-600/80 rounded-sm">
-              <span class="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
-              <span class="text-[10px] font-black text-white">REC</span>
-            </div>
-          }
-          
-          <!-- Viewers Count -->
-          <div class="absolute top-3 right-3 flex items-center gap-1 px-2 py-0.5 bg-black/40 backdrop-blur-md border border-white/10 rounded-sm">
-            <span class="material-symbols-outlined text-[14px] text-accent">visibility</span>
-            <span class="text-[10px] font-bold text-white ml-1">{{ liveViewers() }}</span>
-          </div>
-          
-          <!-- Video Controls -->
-          <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <span class="material-symbols-outlined text-white text-xl cursor-pointer hover:text-primary transition" 
-                    (click)="toggleAudio()">volume_up</span>
-              <span class="material-symbols-outlined text-white text-xl cursor-pointer hover:text-primary transition"
-                    (click)="toggleFullscreen()">fullscreen</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <span class="text-[10px] font-mono text-white">LIVE</span>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Lecture Info Overlay -->
-        <div class="absolute bottom-12 left-0 right-0 px-4 py-2 bg-black/40 backdrop-blur-sm pointer-events-none">
-          <h2 class="text-white text-sm font-headline font-bold truncate">{{ lectureTitle() }}</h2>
-          <p class="text-white/80 text-[10px]">{{ teacherName() }}</p>
-        </div>
-      </section>
-      
-      <!-- Active Students Indicator -->
-      <div class="bg-charcoal-light/50 border-b border-charcoal-border px-4 py-2">
-        <div class="flex items-center gap-2 overflow-x-auto">
-          <span class="text-[10px] text-on-surface-variant uppercase tracking-wider font-bold">Live Viewers:</span>
-          <span class="text-white text-sm font-bold">{{ liveViewers() }}</span>
-          <span class="text-[10px] text-on-surface-variant ml-2">watching</span>
-        </div>
-      </div>
-      
-      <!-- Tabbed Interface -->
-      <div class="mt-0">
-        <div class="flex border-b border-slate-200 dark:border-[#3b4354]">
-          <button (click)="setActiveTab('overView')"
-            class="flex-1 flex flex-col items-center justify-center border-b-[3px] pb-[13px] pt-4 cursor-pointer transition-all" 
-            [class.border-b-primary]="tabFlags().overView"
-            [class.text-white]="tabFlags().overView"
-            [class.text-slate-500]="!tabFlags().overView"
-            [class.border-b-transparent]="!tabFlags().overView">
-            <p class="text-sm font-bold leading-normal tracking-[0.015em]">Overview</p>
-          </button>
-          
-          <button (click)="setActiveTab('chats')"
-            class="flex-1 flex flex-col items-center justify-center border-b-[3px] pb-[13px] pt-4 cursor-pointer transition-all"
-            [class.border-b-primary]="tabFlags().chats"
-            [class.text-white]="tabFlags().chats"
-            [class.text-slate-500]="!tabFlags().chats"
-            [class.border-b-transparent]="!tabFlags().chats">
-            <div class="flex items-center gap-1">
-              <p class="text-sm font-bold leading-normal tracking-[0.015em]">Live Chat</p>
-              @if (messageCount() > 0) {
-                <span class="text-xs bg-primary px-1.5 py-0.5 rounded-full">{{ messageCount() }}</span>
-              }
-            </div>
-          </button>
-        </div>
-      </div>
-      
-      <!-- Tab Content: Overview -->
-      @if (tabFlags().overView) {
-        <div class="flex-grow overflow-y-auto custom-scrollbar p-4">
+        }
+
+        <form [formGroup]="joinForm" (ngSubmit)="joinLecture()">
           <div class="mb-4">
-            <div class="flex items-center gap-2 mb-3">
-              <div class="bg-charcoal-light px-3 py-1 rounded-full border border-charcoal-border">
-                <span class="text-xs text-accent font-mono">Room: {{ joinForm.get('roomId')?.value }}</span>
-              </div>
-            </div>
-            
-            <h2 class="font-headline text-xl font-bold text-white mb-1">{{ lectureTitle() }}</h2>
-            <div class="flex items-center gap-2 text-on-surface-variant text-[11px] mb-3">
-              <span class="font-bold text-accent uppercase">{{ teacherName() }}</span>
-              <span class="w-1 h-1 bg-charcoal-border rounded-full"></span>
-              <span class="uppercase">Instructor</span>
-            </div>
-            
-            <div class="flex gap-2 mb-4">
-              <span class="px-2 py-0.5 border border-charcoal-border text-[9px] font-bold uppercase text-white">Live Session</span>
-              @if (isRecording()) {
-                <span class="px-2 py-0.5 border border-red-500 text-[9px] font-bold uppercase text-red-500 flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></span>
-                  Recording in Progress
-                </span>
-              }
-            </div>
-            
-            <p class="text-on-surface-variant text-xs leading-relaxed">
-              Welcome to the live lecture! You can interact with the teacher through chat, raise your hand to ask questions,
-              and participate in the session. The lecture is being streamed live in HD quality.
-            </p>
+            <label class="text-white text-sm mb-2 block">Room ID</label>
+            <input type="text" formControlName="roomId"
+              class="w-full bg-charcoal border border-charcoal-border rounded-lg px-4 py-2 text-white focus:outline-none focus:border-primary"
+              placeholder="Enter room ID">
           </div>
-          
-          <div class="flex items-center justify-between mt-6 pt-6 border-t border-charcoal-border">
-            <div class="flex gap-2 w-full">
-              <button (click)="raiseHand()" [disabled]="!canRaiseHand()"
-                class="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-accent text-charcoal font-bold text-[10px] uppercase tracking-tighter disabled:opacity-50 disabled:cursor-not-allowed hover:bg-accent/90 transition-all">
-                <span class="material-symbols-outlined text-sm">{{ handRaised() ? 'pan_tool' : 'pan_tool' }}</span>
-                {{ handRaised() ? 'Hand Raised ✓' : 'Raise Hand' }}
-              </button>
-              <button (click)="setActiveTab('chats')"
-                class="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-charcoal-light border border-charcoal-border text-white font-bold text-[10px] uppercase tracking-tighter hover:bg-charcoal transition-all">
-                <span class="material-symbols-outlined text-sm">chat</span>
-                Ask Question
-              </button>
-            </div>
+          <div class="mb-6">
+            <label class="text-white text-sm mb-2 block">Your Name</label>
+            <input type="text" formControlName="studentName"
+              class="w-full bg-charcoal border border-charcoal-border rounded-lg px-4 py-2 text-white focus:outline-none focus:border-primary"
+              placeholder="Enter your name">
           </div>
-          
-          <!-- Connection Status -->
-          <div class="mt-4 p-3 bg-charcoal-light/50 rounded-lg border border-charcoal-border">
-            <div class="flex items-center gap-2">
-              <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-              <span class="text-[10px] text-on-surface-variant">Connected to lecture • Real-time updates active</span>
-            </div>
+          <button type="submit" [disabled]="joinForm.invalid || isLoading()"
+            class="w-full bg-primary text-white font-bold py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary/90 transition-all">
+            @if (isLoading()) {
+            <span class="flex items-center justify-center gap-2">
+              <span class="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></span>
+              Joining...
+            </span>
+            } @else {
+            <span>Join Lecture</span>
+            }
+          </button>
+        </form>
+      </div>
+    </div>
+    } @else {
+    <!-- Active Lecture Interface -->
+
+    <!-- Video Player Section -->
+    <section class="h-[40%] w-full flex flex-col bg-black relative shrink-0">
+      <div class="relative w-full h-full">
+        <video #videoElement autoplay playsinline></video>
+        <!-- Live Badge -->
+        <div class="absolute top-3 left-3 flex items-center gap-1.5 px-2 py-0.5 bg-red-600 rounded-sm">
+          <span class="w-1.5 h-1.5 bg-white rounded-full live-pulse"></span>
+          <span class="text-[10px] font-black text-white">LIVE</span>
+        </div>
+
+        <!-- Recording Indicator -->
+        @if (isRecording()) {
+        <div class="absolute top-3 left-20 flex items-center gap-1 px-2 py-0.5 bg-red-600/80 rounded-sm">
+          <span class="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
+          <span class="text-[10px] font-black text-white">REC</span>
+        </div>
+        }
+
+        <!-- Viewers Count -->
+        <div
+          class="absolute top-3 right-3 flex items-center gap-1 px-2 py-0.5 bg-black/40 backdrop-blur-md border border-white/10 rounded-sm">
+          <span class="material-symbols-outlined text-[14px] text-accent">visibility</span>
+          <span class="text-[10px] font-bold text-white ml-1">{{ liveViewers() }}</span>
+        </div>
+
+        <!-- Video Controls -->
+        <div
+          class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-white text-xl cursor-pointer hover:text-primary transition"
+              (click)="toggleAudio()">volume_up</span>
+            <span class="material-symbols-outlined text-white text-xl cursor-pointer hover:text-primary transition"
+              (click)="toggleFullscreen()">fullscreen</span>
           </div>
-          
-          <!-- Lecture Stats -->
-          <div class="mt-4 grid grid-cols-2 gap-3">
-            <div class="bg-charcoal-light rounded-lg p-3 text-center">
-              <span class="material-symbols-outlined text-accent text-lg">people</span>
-              <p class="text-white text-sm font-bold mt-1">{{ liveViewers() }}</p>
-              <p class="text-[9px] text-on-surface-variant">Active Viewers</p>
-            </div>
-            <div class="bg-charcoal-light rounded-lg p-3 text-center">
-              <span class="material-symbols-outlined text-accent text-lg">chat_bubble</span>
-              <p class="text-white text-sm font-bold mt-1">{{ messageCount() }}</p>
-              <p class="text-[9px] text-on-surface-variant">Total Messages</p>
-            </div>
+          <div class="flex items-center gap-3">
+            <span class="text-[10px] font-mono text-white">LIVE</span>
           </div>
         </div>
-      }
-      
-      <!-- Tab Content: Live Chat -->
-      @if (tabFlags().chats) {
-        <div class="flex-grow flex flex-col overflow-hidden">
-          <div class="flex-grow overflow-y-auto custom-scrollbar p-4 space-y-4 chat-messages-container">
-            @for (message of messages(); track message.userId + message.timestamp) {
-              @if (message.role === 'system') {
-                <div class="flex justify-center">
-                  <span class="text-[10px] bg-charcoal-light px-3 py-1 text-on-surface-variant uppercase tracking-widest rounded-full">
-                    {{ message.message }}
-                  </span>
-                </div>
-              }
-              
-              @if (message.role === 'student') {
-                <div class="flex gap-3 items-start group hover:bg-charcoal-light/30 p-2 rounded-lg transition-all">
-                  <div class="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center shrink-0 border border-accent/30">
-                    <span class="material-symbols-outlined text-accent text-lg">person</span>
-                  </div>
-                  <div class="flex-1">
-                    <div class="flex items-baseline gap-2 flex-wrap">
-                      <span class="text-[11px] font-bold text-white">{{ message.userName }}</span>
-                      <span class="text-[9px] text-on-surface-variant">{{ message.timestamp | date:'HH:mm' }}</span>
-                      @if (message.userName === joinForm.get('studentName')?.value) {
-                        <span class="text-[8px] bg-primary/20 text-primary px-1.5 py-0.5 rounded-full">You</span>
-                      }
-                    </div>
-                    <p class="text-xs text-on-surface-variant mt-1 leading-relaxed">{{ message.message }}</p>
-                  </div>
-                </div>
-              }
-              
-              @if (message.role === 'teacher') {
-                <div class="bg-accent/5 border-l-2 border-accent p-3 rounded-r-lg">
-                  <div class="flex items-center gap-2 mb-1">
-                    <span class="text-[10px] font-bold text-accent uppercase tracking-tighter bg-accent/10 px-1.5 py-0.5 rounded-sm">Instructor</span>
-                    <span class="text-[11px] font-bold text-white">{{ message.userName }}</span>
-                  </div>
-                  <p class="text-xs text-on-surface-variant leading-relaxed">{{ message.message }}</p>
-                </div>
-              }
-            } @empty {
-              <div class="flex flex-col items-center justify-center h-full gap-2">
-                <span class="material-symbols-outlined text-4xl text-on-surface-variant">chat_bubble_outline</span>
-                <span class="text-[10px] text-on-surface-variant">No messages yet. Start the conversation!</span>
-              </div>
+      </div>
+
+      <!-- Lecture Info Overlay -->
+      <div class="absolute bottom-12 left-0 right-0 px-4 py-2 bg-black/40 backdrop-blur-sm pointer-events-none">
+        <h2 class="text-white text-sm font-headline font-bold truncate">{{ lectureTitle() }}</h2>
+        <p class="text-white/80 text-[10px]">{{ teacherName() }}</p>
+      </div>
+    </section>
+
+    <!-- Active Students Indicator -->
+    <div class="bg-charcoal-light/50 border-b border-charcoal-border px-4 py-2">
+      <div class="flex items-center gap-2 overflow-x-auto">
+        <span class="text-[10px] text-on-surface-variant uppercase tracking-wider font-bold">Live Viewers:</span>
+        <span class="text-white text-sm font-bold">{{ liveViewers() }}</span>
+        <span class="text-[10px] text-on-surface-variant ml-2">watching</span>
+      </div>
+    </div>
+
+    <!-- Tabbed Interface -->
+    <div class="mt-0">
+      <div class="flex border-b border-slate-200 dark:border-[#3b4354]">
+        <button (click)="setActiveTab('overView')"
+          class="flex-1 flex flex-col items-center justify-center border-b-[3px] pb-[13px] pt-4 cursor-pointer transition-all"
+          [class.border-b-primary]="tabFlags().overView" [class.text-white]="tabFlags().overView"
+          [class.text-slate-500]="!tabFlags().overView" [class.border-b-transparent]="!tabFlags().overView">
+          <p class="text-sm font-bold leading-normal tracking-[0.015em]">Overview</p>
+        </button>
+
+        <button (click)="setActiveTab('chats')"
+          class="flex-1 flex flex-col items-center justify-center border-b-[3px] pb-[13px] pt-4 cursor-pointer transition-all"
+          [class.border-b-primary]="tabFlags().chats" [class.text-white]="tabFlags().chats"
+          [class.text-slate-500]="!tabFlags().chats" [class.border-b-transparent]="!tabFlags().chats">
+          <div class="flex items-center gap-1">
+            <p class="text-sm font-bold leading-normal tracking-[0.015em]">Live Chat</p>
+            @if (messageCount() > 0) {
+            <span class="text-xs bg-primary px-1.5 py-0.5 rounded-full">{{ messageCount() }}</span>
             }
           </div>
-          
-          <!-- Chat Input -->
-          <div class="border-t border-charcoal-border p-4 bg-charcoal">
-            <div class="flex gap-3 items-center">
-              <div class="flex-1 relative">
-                <input #chatInput type="text" 
-                  placeholder="Ask a question..." 
-                  (keyup)="onTyping()"
-                  (keyup.enter)="sendMessage(chatInput.value); chatInput.value = ''"
-                  class="w-full bg-charcoal-light text-white text-sm rounded-2xl px-4 py-3 
+        </button>
+      </div>
+    </div>
+
+    <!-- Tab Content: Overview -->
+    @if (tabFlags().overView) {
+    <div class="flex-grow overflow-y-auto custom-scrollbar p-4">
+      <div class="mb-4">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="bg-charcoal-light px-3 py-1 rounded-full border border-charcoal-border">
+            <span class="text-xs text-accent font-mono">Room: {{ joinForm.get('roomId')?.value }}</span>
+          </div>
+        </div>
+
+        <h2 class="font-headline text-xl font-bold text-white mb-1">{{ lectureTitle() }}</h2>
+        <div class="flex items-center gap-2 text-on-surface-variant text-[11px] mb-3">
+          <span class="font-bold text-accent uppercase">{{ teacherName() }}</span>
+          <span class="w-1 h-1 bg-charcoal-border rounded-full"></span>
+          <span class="uppercase">Instructor</span>
+        </div>
+
+        <div class="flex gap-2 mb-4">
+          <span class="px-2 py-0.5 border border-charcoal-border text-[9px] font-bold uppercase text-white">Live
+            Session</span>
+          @if (isRecording()) {
+          <span
+            class="px-2 py-0.5 border border-red-500 text-[9px] font-bold uppercase text-red-500 flex items-center gap-1">
+            <span class="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></span>
+            Recording in Progress
+          </span>
+          }
+        </div>
+
+        <p class="text-on-surface-variant text-xs leading-relaxed">
+          Welcome to the live lecture! You can interact with the teacher through chat, raise your hand to ask questions,
+          and participate in the session. The lecture is being streamed live in HD quality.
+        </p>
+      </div>
+
+      <div class="flex items-center justify-between mt-6 pt-6 border-t border-charcoal-border">
+        <div class="flex gap-2 w-full">
+          <button (click)="raiseHand()" [disabled]="!canRaiseHand()"
+            class="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-accent text-charcoal font-bold text-[10px] uppercase tracking-tighter disabled:opacity-50 disabled:cursor-not-allowed hover:bg-accent/90 transition-all">
+            <span class="material-symbols-outlined text-sm">{{ handRaised() ? 'pan_tool' : 'pan_tool' }}</span>
+            {{ handRaised() ? 'Hand Raised ✓' : 'Raise Hand' }}
+          </button>
+          <button (click)="setActiveTab('chats')"
+            class="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-charcoal-light border border-charcoal-border text-white font-bold text-[10px] uppercase tracking-tighter hover:bg-charcoal transition-all">
+            <span class="material-symbols-outlined text-sm">chat</span>
+            Ask Question
+          </button>
+        </div>
+      </div>
+
+      <!-- Connection Status -->
+      <div class="mt-4 p-3 bg-charcoal-light/50 rounded-lg border border-charcoal-border">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+          <span class="text-[10px] text-on-surface-variant">Connected to lecture • Real-time updates active</span>
+        </div>
+      </div>
+
+      <!-- Lecture Stats -->
+      <div class="mt-4 grid grid-cols-2 gap-3">
+        <div class="bg-charcoal-light rounded-lg p-3 text-center">
+          <span class="material-symbols-outlined text-accent text-lg">people</span>
+          <p class="text-white text-sm font-bold mt-1">{{ liveViewers() }}</p>
+          <p class="text-[9px] text-on-surface-variant">Active Viewers</p>
+        </div>
+        <div class="bg-charcoal-light rounded-lg p-3 text-center">
+          <span class="material-symbols-outlined text-accent text-lg">chat_bubble</span>
+          <p class="text-white text-sm font-bold mt-1">{{ messageCount() }}</p>
+          <p class="text-[9px] text-on-surface-variant">Total Messages</p>
+        </div>
+      </div>
+    </div>
+    }
+
+    <!-- Tab Content: Live Chat -->
+    @if (tabFlags().chats) {
+    <div class="flex-grow flex flex-col overflow-hidden">
+      <div class="flex-grow overflow-y-auto custom-scrollbar p-4 space-y-4 chat-messages-container">
+        @for (message of messages(); track message.userId + message.timestamp) {
+        @if (message.role === 'system') {
+        <div class="flex justify-center">
+          <span
+            class="text-[10px] bg-charcoal-light px-3 py-1 text-on-surface-variant uppercase tracking-widest rounded-full">
+            {{ message.message }}
+          </span>
+        </div>
+        }
+
+        @if (message.role === 'student') {
+        <div class="flex gap-3 items-start group hover:bg-charcoal-light/30 p-2 rounded-lg transition-all">
+          <div
+            class="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center shrink-0 border border-accent/30">
+            <span class="material-symbols-outlined text-accent text-lg">person</span>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-baseline gap-2 flex-wrap">
+              <span class="text-[11px] font-bold text-white">{{ message.userName }}</span>
+              <span class="text-[9px] text-on-surface-variant">{{ message.timestamp | date:'HH:mm' }}</span>
+              @if (message.userName === joinForm.get('studentName')?.value) {
+              <span class="text-[8px] bg-primary/20 text-primary px-1.5 py-0.5 rounded-full">You</span>
+              }
+            </div>
+            <p class="text-xs text-on-surface-variant mt-1 leading-relaxed">{{ message.message }}</p>
+          </div>
+        </div>
+        }
+
+        @if (message.role === 'teacher') {
+        <div class="bg-accent/5 border-l-2 border-accent p-3 rounded-r-lg">
+          <div class="flex items-center gap-2 mb-1">
+            <span
+              class="text-[10px] font-bold text-accent uppercase tracking-tighter bg-accent/10 px-1.5 py-0.5 rounded-sm">Instructor</span>
+            <span class="text-[11px] font-bold text-white">{{ message.userName }}</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed">{{ message.message }}</p>
+        </div>
+        }
+        } @empty {
+        <div class="flex flex-col items-center justify-center h-full gap-2">
+          <span class="material-symbols-outlined text-4xl text-on-surface-variant">chat_bubble_outline</span>
+          <span class="text-[10px] text-on-surface-variant">No messages yet. Start the conversation!</span>
+        </div>
+        }
+      </div>
+
+      <!-- Chat Input -->
+      <div class="border-t border-charcoal-border p-4 bg-charcoal">
+        <div class="flex gap-3 items-center">
+          <div class="flex-1 relative">
+            <input #chatInput type="text" placeholder="Ask a question..." (keyup)="onTyping()"
+              (keyup.enter)="sendMessage(chatInput.value); chatInput.value = ''" class="w-full bg-charcoal-light text-white text-sm rounded-2xl px-4 py-3 
                     border-2 border-primary/30 
                     focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/30 
                     hover:border-primary/50 transition-all duration-200 
                     placeholder:text-on-surface-variant/60">
-              </div>
-              
-              <button (click)="sendMessage(chatInput.value); chatInput.value = ''"
-                class="flex-shrink-0 bg-primary/90 backdrop-blur-sm hover:bg-primary text-white font-semibold px-5 py-3 rounded-2xl transition-all duration-200 active:scale-95 flex items-center gap-2 border border-white/20 shadow-lg shadow-primary/20 group">
-                <span class="material-symbols-outlined text-sm group-hover:rotate-12 transition-transform duration-200">send</span>
-                <span class="text-sm font-medium hidden sm:inline">Send</span>
-              </button>
-            </div>
-            
-            @if (isTyping()) {
-              <div class="text-[10px] text-on-surface-variant mt-2 pl-2 animate-pulse">
-                <span>Typing...</span>
-              </div>
-            }
-            
-            <div class="text-[9px] text-on-surface-variant/50 mt-2 pl-2">
-              Be respectful and ask questions related to the lecture
-            </div>
           </div>
+
+          <button (click)="sendMessage(chatInput.value); chatInput.value = ''"
+            class="flex-shrink-0 bg-primary/90 backdrop-blur-sm hover:bg-primary text-white font-semibold px-5 py-3 rounded-2xl transition-all duration-200 active:scale-95 flex items-center gap-2 border border-white/20 shadow-lg shadow-primary/20 group">
+            <span
+              class="material-symbols-outlined text-sm group-hover:rotate-12 transition-transform duration-200">send</span>
+            <span class="text-sm font-medium hidden sm:inline">Send</span>
+          </button>
         </div>
-      }
+
+        @if (isTyping()) {
+        <div class="text-[10px] text-on-surface-variant mt-2 pl-2 animate-pulse">
+          <span>Typing...</span>
+        </div>
+        }
+
+        <div class="text-[9px] text-on-surface-variant/50 mt-2 pl-2">
+          Be respectful and ask questions related to the lecture
+        </div>
+      </div>
+    </div>
+    }
     }
   </main>
-  
+
   <!-- Hand Raised Confirmation Toast -->
   @if (handRaised() && tabFlags().overView) {
-    <div class="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-accent text-charcoal px-4 py-2 rounded-full shadow-lg text-sm font-bold animate-in z-50">
-      ✋ Hand raised! Teacher will acknowledge you soon.
-    </div>
+  <div
+    class="fixed bottom-20 right-4 bg-charcoal-light border border-charcoal-border rounded-xl shadow-xl p-3 max-w-xs w-full animate-in slide-in-from-bottom-2">
+    ✋ Hand raised! Teacher will acknowledge you soon.
+  </div>
   }
-  
+
   <!-- Error Toast -->
   @if (error()) {
-    <div class="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-4 py-2 rounded-full shadow-lg text-sm font-bold animate-in z-50">
-      ⚠️ {{ error() }}
-    </div>
+  <div
+    class="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-4 py-2 rounded-full shadow-lg text-sm font-bold animate-in z-50">
+    ⚠️ {{ error() }}
+  </div>
   }
 </div>
